@@ -1,0 +1,260 @@
+{
+  "titulo": "Cronograma de Desarrollo Completo - 7 Enero 2026 en adelante",
+  "periodos": [
+    {
+      "titulo": "🏗️ PROYECTO 1: Sistema de Consulta CUITS (22 Enero - 7 Febrero 2026)",
+      "dias": [
+        {
+          "fecha": "22 Enero",
+          "titulo": "Inicio Desarrollo CUIT",
+          "actividades": [
+            "Implementación final del motor de búsqueda CUIT",
+            "Sistema de carga y procesamiento de datos JSON",
+            "Validación completa de estructura de datos fiscales",
+            "Testing con datos reales de consulta masiva",
+            "Optimización de performance de búsqueda"
+          ]
+        },
+        {
+          "fecha": "23 Enero",
+          "titulo": "Interfaz de Usuario CUIT",
+          "actividades": [
+            "Desarrollo del layout principal con navegación por pestañas",
+            "Implementación del sistema de búsqueda individual y masiva",
+            "Creación de paneles de resultados con información completa",
+            "Sistema de filtros avanzados (provincia, estado)"
+          ]
+        },
+        {
+          "fecha": "24 Enero",
+          "titulo": "Funcionalidades Avanzadas CUIT",
+          "actividades": [
+            "Implementación del historial de búsquedas",
+            "Sistema de exportación (PDF, Excel, CSV) con formato profesional",
+            "Búsqueda por actividad económica",
+            "Filtros combinados y búsqueda global",
+            "Sistema de carga y estados de error"
+          ]
+        },
+        {
+          "fecha": "25 Enero",
+          "titulo": "Diseño y UX CUIT",
+          "actividades": [
+            "Implementación de paleta negro-dorado-blanco",
+            "Animaciones y transiciones suaves",
+            "Sistema de autenticación con modal profesional",
+            "Optimización de experiencia de usuario",
+            "Testing de usabilidad y accesibilidad"
+          ]
+        },
+        {
+          "fecha": "26 Enero",
+          "titulo": "Análisis Estadístico CUIT",
+          "actividades": [
+            "Testing general"
+          ]
+        },
+        {
+          "fecha": "27 Enero",
+          "titulo": "Optimización CUIT",
+          "actividades": [
+            "Testing funcional completo del sistema CUIT",
+            "Validación cross-browser y responsive",
+            "Optimización de performance y carga",
+            "Debugging y corrección de errores",
+            "Preparación para despliegue"
+          ]
+        },
+        {
+          "fecha": "28 Enero",
+          "titulo": "Documentación CUIT",
+          "actividades": [
+            "Creación de documentación técnica completa",
+            "Guía de usuario e instalación",
+            "Comentarios detallados en código fuente",
+            "Preparación de archivos para producción",
+            "Testing final en entorno local"
+          ]
+        },
+        {
+          "fecha": "29 Enero",
+          "titulo": "Despliegue Sistema CUIT",
+          "actividades": [
+            "Configuración del repositorio y estructura final",
+            "Despliegue en plataforma de producción",
+            "Testing en entorno de producción",
+            "Monitoreo inicial del sistema"
+          ]
+        },
+        {
+          "fecha": "30 Enero",
+          "titulo": "Ajustes Finales CUIT",
+          "actividades": [
+            "Revisión final de funcionalidades implementadas",
+            "Ajustes basados en testing real",
+            "Optimización de recursos y assets",
+            "Actualizacion de documentación de entrega, en caso necesario",
+            "Configuración de soporte y mantenimiento"
+          ]
+        },
+        {
+          "fecha": "31 Enero",
+          "titulo": "Entrega Proyecto CUIT",
+          "actividades": [
+            "Configuración de acceso y permisos"
+          ]
+        },
+        {
+          "fecha": "1 Febrero",
+          "titulo": "Monitoreo y Soporte CUIT",
+          "actividades": [
+            "Configuración de monitoreo básico del sistema"
+          ]
+        },
+        {
+          "fecha": "2 Febrero",
+          "titulo": "Mantenimiento Inicial CUIT",
+          "actividades": [
+            "Corrección de issues despues del testing en producción",
+            "Optimizaciones menores de performance",
+            "Preparación para transición al siguiente proyecto",
+            "Cierre administrativo del proyecto CUIT"
+          ]
+        },
+        {
+          "fecha": "3-7 Febrero",
+          "titulo": "Transición y Documentación Final CUIT",
+          "actividades": [
+            "Documentación completa del proyecto desarrollado",
+            "Archivos finales y backups del sistema",
+            "Informe técnico de implementación",
+            "Plan de transición al proyecto Riesgo Crediticio"
+          ]
+        }
+      ]
+    },
+    {
+      "titulo": "📊 PROYECTO 2: Sistema de Riesgo Crediticio (7 Febrero - 1 Marzo 2026)",
+      "dias": [
+        {
+          "fecha": "7 Febrero",
+          "titulo": "Inicio Proyecto Riesgo Crediticio",
+          "actividades": [
+            "Análisis de requerimientos del sistema de riesgo crediticio",
+            "Vamos a necesitar usuario y contraseña para la API de CUIT",
+            "Definición del alcance y objetivos específicos",
+            "Revisión de datos disponibles para evaluación crediticia",
+            "Planificación de algoritmos de evaluación de riesgo",
+            "Configuración del entorno de desarrollo"
+          ]
+        },
+        {
+          "fecha": "8 Febrero",
+          "titulo": "Arquitectura del Sistema de Riesgo",
+          "actividades": [
+            "Diseño de la estructura de datos para evaluación crediticia",
+            "Definición de factores de riesgo y ponderaciones",
+            "Planificación de modelos de scoring crediticio",
+            "Diseño de interfaces de usuario para evaluación",
+            "Arquitectura de reportes de riesgo"
+          ]
+        },
+        {
+          "fecha": "9 Febrero",
+          "titulo": "Desarrollo del Motor de Evaluación",
+          "actividades": [
+            "Desarrollo de sistema de scoring automático",
+            "Integración con base de datos de CUIT existente",
+            "Validación de reglas de negocio para evaluación",
+            "Testing de precisión de algoritmos"
+          ]
+        },
+        {
+          "fecha": "10 Febrero",
+          "titulo": "Interfaz de Evaluación de Riesgo",
+          "actividades": [
+            "Desarrollo de formulario de consulta de riesgo",
+            "Implementación de inputs para datos adicionales",
+            "Sistema de visualización de resultados de evaluación",
+            "Indicadores visuales de nivel de riesgo"
+          ]
+        },
+        {
+          "fecha": "11 Febrero",
+          "titulo": "Sistema de Reportes de Riesgo",
+          "actividades": [
+            "Desarrollo de reportes detallados de evaluación",
+            "Implementación de gráficos de riesgo histórico",
+            "Sistema de alertas y recomendaciones",
+            "Exportación de reportes en múltiples formatos",
+            "Personalización de reportes por cliente"
+          ]
+        },
+        {
+          "fecha": "12 Febrero",
+          "titulo": "Integración con Base de Datos",
+          "actividades": [
+            "Conexión con sistema de consulta CUIT existente",
+            "Implementación de consultas automáticas de datos",
+            "Validación de integridad de datos cruzados",
+            "Optimización de consultas para performance",
+            "Testing de integración completa"
+          ]
+        },
+        {
+          "fecha": "13 Febrero",
+          "titulo": "Testing y Validación",
+          "actividades": [
+            "Testing general"
+          ]
+        },
+        {
+          "fecha": "14 Febrero",
+          "titulo": "Interfaz de Administración",
+          "actividades": [
+            "Desarrollo de panel administrativo para riesgo",
+            "Configuración de parámetros de evaluación",
+            "Sistema de auditoría de evaluaciones realizadas",
+            "Herramientas de mantenimiento y configuración"
+          ]
+        },
+        {
+          "fecha": "15 Febrero",
+          "titulo": "Optimización y Documentación",
+          "actividades": [
+            "Optimización de algoritmos de evaluación",
+            "Documentación técnica completa del sistema",
+            "Creación de manuales de usuario",
+            "Testing de carga y estrés del sistema",
+            "Preparación de documentación de despliegue"
+          ]
+        },
+        {
+          "fecha": "16 Febrero",
+          "titulo": "Despliegue Sistema de Riesgo",
+          "actividades": [
+            "Configuración del entorno de producción",
+            "Migración de datos y configuración inicial",
+            "Configuración de monitoreo y alertas",
+            "Validación final de funcionamiento"
+          ]
+        },
+        {
+          "fecha": "17-28 Febrero",
+          "titulo": "Testing Integral y Ajustes",
+          "actividades": [
+            "Testing completo con datos reales de clientes"
+          ]
+        },
+        {
+          "fecha": "29 Febrero - 1 Marzo",
+          "titulo": "Entrega Sistema de Riesgo Crediticio",
+          "actividades": [
+            "Presentación final del sistema de riesgo crediticio",
+            "Entrega de documentación técnica y de usuario"
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -190,15 +190,11 @@ CUIT-Consulta-Sistema/
    ✓ Login y autenticación
    ✓ Navegación entre pestañas
    ✓ Búsqueda de CUIT existente
-   ✓ Búsqueda de CUIT inexistente
    ✓ Guardado de notas
    ✓ Persistencia de sesión
 
 8.2 RESPONSIVIDAD
    ✓ Desktop (1920x1080)
-   ✓ Tablet (768x1024)
-   ✓ Mobile (375x667)
-   ✓ Media queries implementadas
 
 8.3 COMPATIBILIDAD
    ✓ Chrome 120+
@@ -283,3 +279,4 @@ expansion con módulos adicionales y mejoras de rendimiento.
 ================================================================================
                             FIN DEL DOCUMENTO
 ================================================================================
+

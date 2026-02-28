@@ -53,17 +53,45 @@
             </div>
             <div class="info-section">
               <h3>🎯 Objetivo Principal</h3>
-              <p>Desarrollar un sistema web profesional para consultas de CUIT (Código Único de Identificación Tributaria) de Argentina, con interfaz moderna y segura.</p>
+              <p>Desarrollar un sistema web profesional para consultas de CUIT (Código Único de Identificación Tributaria) de Argentina, con interfaz moderna, segura y optimizada para dispositivos móviles, respaldado por una base de datos centralizada.</p>
             </div>
 
             <div class="info-section">
               <h3>💰 Costos</h3>
               <div class="cost-breakdown">
                 <div class="cost-item"><strong>Desarrollo:</strong> $500.000 ARS</div>
-                <div class="cost-item"><strong>Hosting:</strong> $0 USD (GitHub Pages)</div>
-                <div class="cost-item"><strong>Mantenimiento:</strong> $0 USD</div>
+                <div class="cost-item"><strong>Repositorio GitHub:</strong> $0 USD</div>
+                <div class="cost-item"><strong>Abono mensual de soporte:</strong> $630.000 ARS</div>
+                <div class="cost-item" style="font-size: 0.85em; opacity: 0.85; margin-top: 4px;"><em>Incluye soporte de las aplicaciones y desarrollo de nuevas integraciones complejas</em></div>
               </div>
             </div>
+          </div>
+
+          <div class="stats-row">
+            <div class="stat-card">
+              <div class="stat-number" id="stat-fases">-</div>
+              <div class="stat-label">Fases Totales</div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-number" id="stat-completadas">-</div>
+              <div class="stat-label">Completadas</div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-number" id="stat-desarrollo">-</div>
+              <div class="stat-label">En Desarrollo</div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-number" id="stat-pendientes">-</div>
+              <div class="stat-label">Tareas Pendientes</div>
+            </div>
+          </div>
+
+          <div class="progress-section">
+            <h3>📊 Progreso General del Proyecto</h3>
+            <div class="progress-bar-container">
+              <div class="progress-bar-fill" id="progress-fill" style="width: 0%;">0%</div>
+            </div>
+            <div class="progress-phases" id="progress-legend"></div>
           </div>
         </div>
       </div>
@@ -83,23 +111,31 @@
           <div class="objectives-grid">
             <div class="objective-card">
               <h3>🎯 Objetivo Principal</h3>
-              <p>Sistema web profesional para consultas de CUIT y Riesgo crediticio con interfaz moderna y segura</p>
+              <p>Sistema web profesional para consultas de CUIT y Riesgo Crediticio con interfaz moderna, segura y optimizada para móviles</p>
             </div>
             <div class="objective-card">
               <h3>🔐 Autenticación</h3>
               <p>Implementar sistema de autenticación seguro con contraseña</p>
             </div>
             <div class="objective-card">
-              <h3>📱 Interfaz Multi-pestañas</h3>
-              <p>Crear interfaz con Consulta de Actividades, Riesgo Crediticio y Notas</p>
+              <h3>📱 Mobile First</h3>
+              <p>Diseño responsive optimizado para dispositivos móviles con interfaz adaptativa</p>
+            </div>
+            <div class="objective-card">
+              <h3>🗄️ Base de Datos</h3>
+              <p>Base de datos centralizada para almacenamiento persistente de consultas CUIT y datos de riesgo crediticio</p>
+            </div>
+            <div class="objective-card">
+              <h3>🏛️ Integración API ARCA</h3>
+              <p>Integración con la API de ARCA (ex AFIP) para obtención y validación de datos tributarios de contribuyentes</p>
+            </div>
+            <div class="objective-card">
+              <h3>🏦 APIs BCRA</h3>
+              <p>Integración con APIs del Banco Central (BCRA) para obtener datos de riesgo crediticio en tiempo real</p>
             </div>
             <div class="objective-card">
               <h3>🎨 Diseño Profesional</h3>
               <p>Desarrollar diseño con colores corporativos negro-dorado-blanco</p>
-            </div>
-            <div class="objective-card">
-              <h3>💾 Persistencia</h3>
-              <p>Implementar almacenamiento local para sesión y notas</p>
             </div>
           </div>
         </div>
@@ -113,31 +149,36 @@
               <div class="phase-header">
                 <span class="phase-number">1</span>
                 <h3>Planificación y Análisis</h3>
+                <span class="badge badge-completed">Completada</span>
               </div>
               <ul class="phase-tasks">
                 <li>✓ Estudio detallado de la base de datos de CUIT masiva</li>
                 <li>✓ Diseño de la estructura de información tributaria</li>
                 <li>✓ Definición de identidad visual corporativa (negro-dorado-blanco)</li>
                 <li>✓ Organización de módulos: Consulta, Riesgo Crediticio y Notas</li>
+                <li>✓ Diseño de arquitectura de base de datos centralizada</li>
               </ul>
             </div>
             <div class="phase">
               <div class="phase-header">
                 <span class="phase-number">2</span>
                 <h3>Desarrollo del Núcleo</h3>
+                <span class="badge badge-completed">Completada</span>
               </div>
               <ul class="phase-tasks">
                 <li>✓ Armado de la estructura HTML5 semántica y accesible</li>
                 <li>✓ Header fijo con navegación profesional</li>
                 <li>✓ Sistema de pestañas para organizar las funcionalidades</li>
-                <li>✓ Contenedores responsive que se adaptan a cualquier pantalla</li>
-                <li>✓ Integración de datos JSON locales de consulta tributaria</li>
+                <li>✓ Contenedores responsive optimizados para móviles (Mobile First)</li>
+                <li>✓ Integración con base de datos para consulta tributaria</li>
+                <li>✓ Optimización de rendimiento para dispositivos móviles</li>
               </ul>
             </div>
             <div class="phase">
               <div class="phase-header">
                 <span class="phase-number">3</span>
                 <h3>Autenticación y Seguridad</h3>
+                <span class="badge badge-completed">Completada</span>
               </div>
               <ul class="phase-tasks">
                 <li>✓ Modal de login elegante para acceso controlado</li>
@@ -151,6 +192,7 @@
               <div class="phase-header">
                 <span class="phase-number">4</span>
                 <h3>Interfaz de Usuario</h3>
+                <span class="badge badge-completed">Completada</span>
               </div>
               <ul class="phase-tasks">
                 <li>✓ Navbar con branding de SHELL y AXION integrado</li>
@@ -164,10 +206,13 @@
               <div class="phase-header">
                 <span class="phase-number">5</span>
                 <h3>Funcionalidades Específicas</h3>
+                <span class="badge badge-completed">Completada</span>
               </div>
               <ul class="phase-tasks">
-                <li>✓ Motor de búsqueda de CUIT con resultados instantáneos</li>
+                <li>✓ Motor de búsqueda de CUIT con resultados instantáneos desde base de datos</li>
                 <li>✓ Presentación de datos en tarjetas de 4 columnas ordenadas</li>
+                <li>✓ Comparador de CUITs: análisis lado a lado de múltiples contribuyentes</li>
+                <li>✓ Sección de Estadísticas de Uso con métricas y gráficos de actividad</li>
                 <li>✓ Bloc de notas con guardado automático local</li>
                 <li>✓ Preparación del módulo de evaluación crediticia</li>
                 <li>✓ Validaciones robustas y manejo de errores amigable</li>
@@ -177,13 +222,32 @@
               <div class="phase-header">
                 <span class="phase-number">6</span>
                 <h3>Optimización y Pulido</h3>
+                <span class="badge badge-completed">Completada</span>
               </div>
               <ul class="phase-tasks">
                 <li>✓ Control del scroll para experiencia de usuario controlada</li>
                 <li>✓ Optimización de animaciones para rendimiento fluido</li>
-                <li>✓ Diseño que funciona perfecto en móvil y desktop</li>
-                <li>✓ Testing en diferentes navegadores y versiones</li>
+                <li>✓ Diseño optimizado para móviles (Mobile First) y desktop</li>
+                <li>✓ Testing en diferentes navegadores y dispositivos</li>
                 <li>✓ Código limpio, comentado y mantenible</li>
+              </ul>
+            </div>
+            <div class="phase phase-future">
+              <div class="phase-header">
+                <span class="phase-number">7</span>
+                <h3>Fase 2: Sistema de Riesgo Crediticio</h3>
+                <span class="badge badge-in-progress">En Desarrollo</span>
+              </div>
+              <ul class="phase-tasks">
+                <li>&#9744; Integración con APIs del BCRA (Central de Deudores)</li>
+                <li>&#9744; Configuración de endpoints BCRA para consulta de situación crediticia</li>
+                <li>&#9744; Base de datos dedicada para almacenamiento de consultas y resultados</li>
+                <li>&#9744; Motor de evaluación de riesgo con scoring automático</li>
+                <li>&#9744; Panel de visualización de riesgo con indicadores gráficos</li>
+                <li>&#9744; Sistema de reportes y exportación de evaluaciones</li>
+                <li>&#9744; Historial de consultas crediticias almacenado en base de datos</li>
+                <li>&#9744; Sistema de Alertas Tempranas con actualización automática diaria</li>
+                <li>&#9744; Score de Confianza interno ajustable por el usuario</li>
               </ul>
             </div>
           </div>
@@ -200,13 +264,24 @@
                 <li><strong>HTML5:</strong> Estructura semántica con header, nav, main, sections</li>
                 <li><strong>CSS3:</strong> Variables CSS, Flexbox, Grid, Animations, Media Queries</li>
                 <li><strong>JavaScript ES6+:</strong> Async/await, Arrow functions, Template literals</li>
+                <li><strong>Responsive Design:</strong> Mobile First, optimizado para dispositivos móviles</li>
               </ul>
             </div>
             <div class="tech-section">
-              <h3>💾 Almacenamiento</h3>
+              <h3>🗄️ Base de Datos y Almacenamiento</h3>
               <ul class="tech-list">
+                <li><strong>Base de Datos:</strong> Almacenamiento centralizado de datos CUIT y consultas</li>
                 <li><strong>localStorage:</strong> Para sesión de usuario y notas</li>
-                <li><strong>JSON local:</strong> Para datos de CUIT (consulta_masiva.json)</li>
+                <li><strong>JSON estructurado:</strong> Para datos de CUIT (consulta_masiva.json)</li>
+              </ul>
+            </div>
+            <div class="tech-section">
+              <h3>🏛️ APIs e Integraciones</h3>
+              <ul class="tech-list">
+                <li><strong>API ARCA (ex AFIP):</strong> Obtención y validación de datos tributarios de contribuyentes</li>
+                <li><strong>API BCRA:</strong> Central de Deudores del Sistema Financiero (Fase 2)</li>
+                <li><strong>API BCRA:</strong> Consulta de situación crediticia de personas y empresas (Fase 2)</li>
+                <li><strong>Base de Datos Riesgo:</strong> Almacenamiento de resultados y histórico de consultas</li>
               </ul>
             </div>
             <div class="tech-section">
@@ -250,7 +325,25 @@
                 <li>Resultados en formato de tarjeta con 4 columnas</li>
                 <li>Información organizada: General, Ubicación, Actividades, Impuestos</li>
                 <li>Sección de Notas con guardado automático</li>
-                <li>Placeholder para futuro módulo de Riesgo Crediticio</li>
+                <li>Módulo de Riesgo Crediticio (Fase 2)</li>
+              </ul>
+            </div>
+            <div class="feature-card">
+              <h3>🔄 Comparador de CUITs</h3>
+              <ul>
+                <li>Comparación lado a lado de múltiples CUITs</li>
+                <li>Visualización de diferencias entre contribuyentes</li>
+                <li>Análisis comparativo de actividades e impuestos</li>
+                <li>Exportación de comparativas</li>
+              </ul>
+            </div>
+            <div class="feature-card">
+              <h3>📈 Estadísticas de Uso</h3>
+              <ul>
+                <li>Panel de estadísticas de consultas realizadas</li>
+                <li>Métricas de uso del sistema por período</li>
+                <li>Historial de búsquedas y consultas frecuentes</li>
+                <li>Gráficos de actividad y tendencias</li>
               </ul>
             </div>
             <div class="feature-card">
@@ -264,9 +357,18 @@
               </ul>
             </div>
             <div class="feature-card">
+              <h3>🗄️ Base de Datos</h3>
+              <ul>
+                <li>Base de datos centralizada para datos CUIT</li>
+                <li>Almacenamiento persistente de consultas</li>
+                <li>Historial de búsquedas y resultados</li>
+                <li>Base de datos dedicada para Riesgo Crediticio (Fase 2)</li>
+              </ul>
+            </div>
+            <div class="feature-card">
               <h3>🛡️ Seguridad y Rendimiento</h3>
               <ul>
-                <li>Datos locales (sin backend)</li>
+                <li>Base de datos con acceso controlado</li>
                 <li>Bloqueo de scroll para experiencia controlada</li>
                 <li>Validación de inputs</li>
                 <li>Manejo de errores graceful</li>
@@ -274,9 +376,13 @@
               </ul>
             </div>
             <div class="feature-card">
-              <h3>📱 Compatibilidad</h3>
+              <h3>📱 Compatibilidad Mobile</h3>
               <ul>
+                <li>Diseño Mobile First optimizado</li>
+                <li>Interfaz adaptativa para smartphones y tablets</li>
                 <li>Desktop (1920x1080)</li>
+                <li>Tablet (768px - 1024px)</li>
+                <li>Móvil (320px - 767px)</li>
               </ul>
             </div>
           </div>
@@ -288,39 +394,39 @@
           <h1>Plan de Despliegue</h1>
           <div class="deployment-info">
             <div class="deployment-section">
-              <h3>🌐 Plataforma de Hosting</h3>
+              <h3>🌐 Repositorio del Proyecto</h3>
               <div class="platform-details">
                 <div class="platform-item">
-                  <strong>Proveedor:</strong> GitHub Pages
+                  <strong>Plataforma:</strong> GitHub
                 </div>
                 <div class="platform-item">
-                  <strong>Costo:</strong> GRATIS
+                  <strong>Repositorio:</strong> <a href="https://github.com/gammaautomatizaciones-rc/PMGSB" target="_blank">PMGSB</a>
                 </div>
                 <div class="platform-item">
-                  <strong>Repositorio:</strong> <a href="https://github.com/gammaautomatizaciones-rc/GSB" target="_blank">PMGSB</a>
+                  <strong>Contenido:</strong> Código fuente completo del proyecto (HTML, CSS, JavaScript, base de datos y documentación)
                 </div>
                 <div class="platform-item">
-                  <strong>URL Producción:</strong> <a href="https://gammaautomatizaciones-rc.github.io/GSB/" target="_blank">gammaautomatizaciones-rc.github.io/PMGSB/</a>
+                  <strong>Acceso:</strong> El cliente recibirá acceso completo al repositorio con todos los archivos del proyecto
                 </div>
               </div>
             </div>
             <div class="deployment-section">
-              <h3>📋 Proceso de Despliegue</h3>
+              <h3>📋 Entrega del Proyecto</h3>
               <ol class="deployment-steps">
-                <li>Crear repositorio en GitHub</li>
-                <li>Subir archivos del proyecto</li>
-                <li>Activar GitHub Pages en settings del repo</li>
-                <li>Configurar branch principal (main)</li>
-                <li>Verificar funcionamiento en URL generada</li>
+                <li>Código fuente completo subido al repositorio de GitHub</li>
+                <li>Estructura de archivos organizada y documentada</li>
+                <li>Documentación técnica incluida en el repositorio</li>
+                <li>Acceso otorgado al cliente para descarga y revisión</li>
+                <li>El cliente podrá implementar el proyecto en la plataforma de hosting de su elección</li>
               </ol>
             </div>
             <div class="deployment-section">
-              <h3>⚙️ Configuración de GitHub Pages</h3>
+              <h3>⚙️ Estructura del Repositorio GitHub</h3>
               <ul class="config-list">
-                <li><strong>Source:</strong> Deploy from a branch</li>
-                <li><strong>Branch:</strong> main</li>
-                <li><strong>Folder:</strong> / (root)</li>
-                <li><strong>Custom domain:</strong> (opcional)</li>
+                <li><strong>Branch principal:</strong> main</li>
+                <li><strong>Archivos incluidos:</strong> Código fuente, estilos, scripts, base de datos y documentación</li>
+                <li><strong>Control de versiones:</strong> Historial completo de desarrollo con Git</li>
+                <li><strong>Formato:</strong> Listo para despliegue en cualquier plataforma web</li>
               </ul>
             </div>
             <div class="deployment-section">
@@ -345,9 +451,46 @@
         <div class="container">
           <h1>Próximas Implementaciones</h1>
           <div class="future-grid">
-            <div class="future-section">
-              <h3>📊 Consultas de Riesgo Crediticio</h3>
-              <p>Panel para evaluar riesgo crediticio de empresas y particulares. Próximamente disponible.</p>
+            <div class="future-section future-highlight">
+              <h3>📊 Fase 2: Sistema de Riesgo Crediticio</h3>
+              <p>Panel completo para evaluar riesgo crediticio de empresas y particulares.</p>
+              <div class="future-details">
+                <h4>🏦 Integración con APIs del BCRA</h4>
+                <ul>
+                  <li>Conexión con la Central de Deudores del Sistema Financiero del BCRA</li>
+                  <li>Consulta de situación crediticia en tiempo real</li>
+                  <li>Obtención de datos de deuda, clasificación y entidades reportantes</li>
+                  <li>Verificación de cheques rechazados y morosidad</li>
+                </ul>
+                <h4>🗄️ Base de Datos Dedicada</h4>
+                <ul>
+                  <li>Almacenamiento centralizado de todas las consultas realizadas</li>
+                  <li>Historial completo de evaluaciones crediticias por CUIT</li>
+                  <li>Registro de cambios en situación crediticia a lo largo del tiempo</li>
+                  <li>Datos persistentes para análisis y reportes</li>
+                </ul>
+                <h4>⚙️ Funcionalidades</h4>
+                <ul>
+                  <li>Motor de scoring automático basado en datos del BCRA</li>
+                  <li>Indicadores visuales de nivel de riesgo (semáforo)</li>
+                  <li>Reportes exportables en PDF y Excel</li>
+                  <li>Dashboard de métricas y estadísticas</li>
+                </ul>
+                <h4>🔔 Sistema de Alertas Tempranas</h4>
+                <ul>
+                  <li>Watchlist de CUITs bajo seguimiento con estados visuales</li>
+                  <li>Actualización automática diaria de situación crediticia</li>
+                  <li>Notificaciones al detectar cambios de situación (ej: pasó de situación 1 a 3)</li>
+                  <li>Feed cronológico de novedades y eventos relevantes</li>
+                </ul>
+                <h4>⭐ Score de Confianza Interno</h4>
+                <ul>
+                  <li>Scoring manual complementario al scoring del BCRA</li>
+                  <li>Ajustable por el usuario según su criterio profesional</li>
+                  <li>Permite agregar notas y justificación al score asignado</li>
+                  <li>Histórico de cambios en el score de confianza por CUIT</li>
+                </ul>
+              </div>
             </div>
             <div class="future-section">
               <h3>💬 Bot WhatsApp - Memorandum</h3>
@@ -359,7 +502,13 @@
     </div>
   </div>
 
+  <footer class="footer">
+    <div class="footer-brand">GAMMA AUTOMATIZACIONES</div>
+    <div class="footer-divider"></div>
+    <div class="footer-sub">Sistema desarrollado para Grupo SORBONA BERRIA</div>
+    <div class="footer-sub">Plan de Accion v1.0 &mdash; 2025</div>
+  </footer>
+
   <script src="plan_accion.js"></script>
 </body>
 </html>
-

@@ -1,22 +1,22 @@
 {
-  "titulo": "Cronograma de Desarrollo Completo - 7 Enero 2026 en adelante",
+  "titulo": "Cronograma de Desarrollo Completo - 13 Enero 2026 en adelante",
   "periodos": [
     {
-      "titulo": "🏗️ PROYECTO 1: Sistema de Consulta CUITS (22 Enero - 7 Febrero 2026)",
+      "titulo": "🏗️ PROYECTO 1: Sistema de Consulta CUITS + Base de Datos + Mobile (28 Enero - 13 Febrero 2026)",
       "dias": [
         {
-          "fecha": "22 Enero",
+          "fecha": "28 Enero",
           "titulo": "Inicio Desarrollo CUIT",
           "actividades": [
             "Implementación final del motor de búsqueda CUIT",
-            "Sistema de carga y procesamiento de datos JSON",
+            "Configuración de base de datos para almacenamiento de datos CUIT",
             "Validación completa de estructura de datos fiscales",
             "Testing con datos reales de consulta masiva",
             "Optimización de performance de búsqueda"
           ]
         },
         {
-          "fecha": "23 Enero",
+          "fecha": "29 Enero",
           "titulo": "Interfaz de Usuario CUIT",
           "actividades": [
             "Desarrollo del layout principal con navegación por pestañas",
@@ -26,47 +26,50 @@
           ]
         },
         {
-          "fecha": "24 Enero",
+          "fecha": "30 Enero",
           "titulo": "Funcionalidades Avanzadas CUIT",
           "actividades": [
             "Implementación del historial de búsquedas",
             "Sistema de exportación (PDF, Excel, CSV) con formato profesional",
             "Búsqueda por actividad económica",
-            "Filtros combinados y búsqueda global",
+            "Comparador de CUITs: análisis lado a lado",
             "Sistema de carga y estados de error"
           ]
         },
         {
-          "fecha": "25 Enero",
+          "fecha": "31 Enero",
           "titulo": "Diseño y UX CUIT",
           "actividades": [
             "Implementación de paleta negro-dorado-blanco",
             "Animaciones y transiciones suaves",
             "Sistema de autenticación con modal profesional",
-            "Optimización de experiencia de usuario",
-            "Testing de usabilidad y accesibilidad"
+            "Optimización Mobile First para dispositivos móviles",
+            "Testing de usabilidad en mobile y desktop"
           ]
         },
         {
-          "fecha": "26 Enero",
-          "titulo": "Análisis Estadístico CUIT",
+          "fecha": "1 Febrero",
+          "titulo": "Estadísticas y Comparador",
           "actividades": [
-            "Testing general"
+            "Desarrollo de sección de Estadísticas de Uso",
+            "Métricas de consultas realizadas y tendencias",
+            "Pulido del Comparador de CUITs",
+            "Testing general de funcionalidades"
           ]
         },
         {
-          "fecha": "27 Enero",
+          "fecha": "2 Febrero",
           "titulo": "Optimización CUIT",
           "actividades": [
             "Testing funcional completo del sistema CUIT",
-            "Validación cross-browser y responsive",
-            "Optimización de performance y carga",
-            "Debugging y corrección de errores",
+            "Validación cross-browser y responsive en móviles",
+            "Optimización de performance y carga en dispositivos móviles",
+            "Testing de base de datos y consultas",
             "Preparación para despliegue"
           ]
         },
         {
-          "fecha": "28 Enero",
+          "fecha": "3 Febrero",
           "titulo": "Documentación CUIT",
           "actividades": [
             "Creación de documentación técnica completa",
@@ -77,52 +80,52 @@
           ]
         },
         {
-          "fecha": "29 Enero",
+          "fecha": "4 Febrero",
           "titulo": "Despliegue Sistema CUIT",
           "actividades": [
             "Configuración del repositorio y estructura final",
-            "Despliegue en plataforma de producción",
+            "Subida de archivos al repositorio de GitHub",
             "Testing en entorno de producción",
             "Monitoreo inicial del sistema"
           ]
         },
         {
-          "fecha": "30 Enero",
+          "fecha": "5 Febrero",
           "titulo": "Ajustes Finales CUIT",
           "actividades": [
             "Revisión final de funcionalidades implementadas",
             "Ajustes basados en testing real",
             "Optimización de recursos y assets",
-            "Actualizacion de documentación de entrega, en caso necesario",
+            "Actualización de documentación de entrega, en caso necesario",
             "Configuración de soporte y mantenimiento"
           ]
         },
         {
-          "fecha": "31 Enero",
+          "fecha": "6 Febrero",
           "titulo": "Entrega Proyecto CUIT",
           "actividades": [
             "Configuración de acceso y permisos"
           ]
         },
         {
-          "fecha": "1 Febrero",
+          "fecha": "7 Febrero",
           "titulo": "Monitoreo y Soporte CUIT",
           "actividades": [
             "Configuración de monitoreo básico del sistema"
           ]
         },
         {
-          "fecha": "2 Febrero",
+          "fecha": "8 Febrero",
           "titulo": "Mantenimiento Inicial CUIT",
           "actividades": [
-            "Corrección de issues despues del testing en producción",
+            "Corrección de issues después del testing en producción",
             "Optimizaciones menores de performance",
             "Preparación para transición al siguiente proyecto",
             "Cierre administrativo del proyecto CUIT"
           ]
         },
         {
-          "fecha": "3-7 Febrero",
+          "fecha": "9-13 Febrero",
           "titulo": "Transición y Documentación Final CUIT",
           "actividades": [
             "Documentación completa del proyecto desarrollado",
@@ -134,124 +137,163 @@
       ]
     },
     {
-      "titulo": "📊 PROYECTO 2: Sistema de Riesgo Crediticio (7 Febrero - 1 Marzo 2026)",
+      "titulo": "📊 PROYECTO 2: Sistema de Riesgo Crediticio + APIs BCRA + Base de Datos (13 Febrero - 13 Marzo 2026)",
       "dias": [
         {
-          "fecha": "7 Febrero",
+          "fecha": "13 Febrero",
           "titulo": "Inicio Proyecto Riesgo Crediticio",
           "actividades": [
             "Análisis de requerimientos del sistema de riesgo crediticio",
-            "Vamos a necesitar usuario y contraseña para la API de CUIT",
+            "Configuración de credenciales para APIs del BCRA",
             "Definición del alcance y objetivos específicos",
-            "Revisión de datos disponibles para evaluación crediticia",
-            "Planificación de algoritmos de evaluación de riesgo",
+            "Revisión de endpoints BCRA: Central de Deudores",
+            "Planificación de arquitectura de base de datos",
             "Configuración del entorno de desarrollo"
           ]
         },
         {
-          "fecha": "8 Febrero",
-          "titulo": "Arquitectura del Sistema de Riesgo",
+          "fecha": "14 Febrero",
+          "titulo": "Arquitectura y Base de Datos",
           "actividades": [
-            "Diseño de la estructura de datos para evaluación crediticia",
-            "Definición de factores de riesgo y ponderaciones",
-            "Planificación de modelos de scoring crediticio",
-            "Diseño de interfaces de usuario para evaluación",
+            "Diseño del esquema de base de datos para consultas y resultados",
+            "Configuración de la base de datos para almacenamiento persistente",
+            "Planificación de integración con APIs BCRA",
+            "Diseño de modelos de datos para scoring crediticio",
             "Arquitectura de reportes de riesgo"
           ]
         },
         {
-          "fecha": "9 Febrero",
-          "titulo": "Desarrollo del Motor de Evaluación",
+          "fecha": "15 Febrero",
+          "titulo": "Integración APIs BCRA",
           "actividades": [
-            "Desarrollo de sistema de scoring automático",
+            "Conexión con API BCRA - Central de Deudores del Sistema Financiero",
+            "Implementación de consultas de situación crediticia por CUIT",
+            "Manejo de respuestas de API y mapeo de datos",
+            "Testing de conexión y autenticación con BCRA",
+            "Almacenamiento de respuestas en base de datos"
+          ]
+        },
+        {
+          "fecha": "16 Febrero",
+          "titulo": "Motor de Evaluación y Scoring",
+          "actividades": [
+            "Desarrollo de sistema de scoring automático basado en datos BCRA",
             "Integración con base de datos de CUIT existente",
             "Validación de reglas de negocio para evaluación",
-            "Testing de precisión de algoritmos"
+            "Testing de precisión de algoritmos de scoring"
           ]
         },
         {
-          "fecha": "10 Febrero",
-          "titulo": "Interfaz de Evaluación de Riesgo",
+          "fecha": "17 Febrero",
+          "titulo": "Integración de Riesgo en Buscador CUIT",
           "actividades": [
-            "Desarrollo de formulario de consulta de riesgo",
-            "Implementación de inputs para datos adicionales",
-            "Sistema de visualización de resultados de evaluación",
-            "Indicadores visuales de nivel de riesgo"
+            "Integración de consulta de riesgo crediticio dentro del buscador de CUITs existente",
+            "Implementación de indicadores visuales (semáforo de riesgo) en resultados de búsqueda",
+            "Visualización de datos BCRA junto a datos tributarios del CUIT",
+            "Indicadores de deuda, clasificación y entidades reportantes en la ficha del CUIT"
           ]
         },
         {
-          "fecha": "11 Febrero",
-          "titulo": "Sistema de Reportes de Riesgo",
+          "fecha": "18 Febrero",
+          "titulo": "Sistema de Reportes",
           "actividades": [
-            "Desarrollo de reportes detallados de evaluación",
+            "Desarrollo de reportes detallados con datos del BCRA",
             "Implementación de gráficos de riesgo histórico",
             "Sistema de alertas y recomendaciones",
-            "Exportación de reportes en múltiples formatos",
-            "Personalización de reportes por cliente"
+            "Exportación de reportes en PDF y Excel",
+            "Historial de consultas almacenado en base de datos"
           ]
         },
         {
-          "fecha": "12 Febrero",
-          "titulo": "Integración con Base de Datos",
+          "fecha": "19 Febrero",
+          "titulo": "Base de Datos e Integración",
           "actividades": [
-            "Conexión con sistema de consulta CUIT existente",
-            "Implementación de consultas automáticas de datos",
+            "Optimización de consultas a base de datos",
+            "Implementación de caché para consultas frecuentes al BCRA",
             "Validación de integridad de datos cruzados",
-            "Optimización de consultas para performance",
-            "Testing de integración completa"
+            "Testing de integración completa API BCRA + Base de Datos"
           ]
         },
         {
-          "fecha": "13 Febrero",
-          "titulo": "Testing y Validación",
-          "actividades": [
-            "Testing general"
-          ]
-        },
-        {
-          "fecha": "14 Febrero",
-          "titulo": "Interfaz de Administración",
+          "fecha": "20 Febrero",
+          "titulo": "Panel de Administración",
           "actividades": [
             "Desarrollo de panel administrativo para riesgo",
-            "Configuración de parámetros de evaluación",
+            "Dashboard de métricas y estadísticas de consultas",
             "Sistema de auditoría de evaluaciones realizadas",
-            "Herramientas de mantenimiento y configuración"
+            "Herramientas de mantenimiento de base de datos"
           ]
         },
         {
-          "fecha": "15 Febrero",
+          "fecha": "21 Febrero",
           "titulo": "Optimización y Documentación",
           "actividades": [
-            "Optimización de algoritmos de evaluación",
-            "Documentación técnica completa del sistema",
-            "Creación de manuales de usuario",
+            "Optimización de algoritmos y consultas a base de datos",
+            "Documentación técnica: integración APIs BCRA",
+            "Documentación de estructura de base de datos",
             "Testing de carga y estrés del sistema",
             "Preparación de documentación de despliegue"
           ]
         },
         {
-          "fecha": "16 Febrero",
+          "fecha": "22 Febrero",
           "titulo": "Despliegue Sistema de Riesgo",
           "actividades": [
             "Configuración del entorno de producción",
-            "Migración de datos y configuración inicial",
-            "Configuración de monitoreo y alertas",
+            "Migración de base de datos a producción",
+            "Configuración de conexión segura con APIs BCRA",
             "Validación final de funcionamiento"
           ]
         },
         {
-          "fecha": "17-28 Febrero",
+          "fecha": "23 Febrero - 28 Febrero",
           "titulo": "Testing Integral y Ajustes",
           "actividades": [
-            "Testing completo con datos reales de clientes"
+            "Testing completo con datos reales de clientes vía BCRA",
+            "Verificación de almacenamiento correcto en base de datos",
+            "Ajustes de scoring y parámetros de evaluación"
           ]
         },
         {
-          "fecha": "29 Febrero - 1 Marzo",
+          "fecha": "1 Marzo - 5 Marzo",
+          "titulo": "Panel de Alertas Tempranas",
+          "actividades": [
+            "Desarrollo de panel independiente de Alertas Tempranas",
+            "Watchlist de CUITs bajo seguimiento con estados visuales",
+            "Sistema de actualización automática diaria de situación crediticia",
+            "Notificaciones al detectar cambios de situación",
+            "Feed cronológico de novedades y eventos relevantes",
+            "Testing de alertas con datos reales"
+          ]
+        },
+        {
+          "fecha": "6 Marzo - 10 Marzo",
+          "titulo": "Panel de Score de Confianza Interno",
+          "actividades": [
+            "Desarrollo de panel independiente de Score de Confianza",
+            "Scoring manual complementario al scoring del BCRA",
+            "Interfaz de ajuste de score por usuario según criterio profesional",
+            "Sistema de notas y justificación por CUIT",
+            "Histórico de cambios en score de confianza",
+            "Integración visual con datos del buscador de CUITs"
+          ]
+        },
+        {
+          "fecha": "11 Marzo - 12 Marzo",
+          "titulo": "Testing Final y Pulido",
+          "actividades": [
+            "Testing integral de Alertas + Score + Riesgo Crediticio",
+            "Optimización de rendimiento general",
+            "Ajustes finales de interfaz y UX"
+          ]
+        },
+        {
+          "fecha": "13 Marzo",
           "titulo": "Entrega Sistema de Riesgo Crediticio",
           "actividades": [
-            "Presentación final del sistema de riesgo crediticio",
-            "Entrega de documentación técnica y de usuario"
+            "Presentación final del sistema con APIs BCRA integradas",
+            "Entrega de documentación técnica y de usuario",
+            "Entrega de esquema y acceso a base de datos"
           ]
         }
       ]

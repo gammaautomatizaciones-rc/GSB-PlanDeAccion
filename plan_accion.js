@@ -1,288 +1,365 @@
-// Function to load cronograma from JSON
-async function loadCronograma() {
+// Plan de Acción - Sistema CUIT | GSB
+// Optimized JavaScript
+
+(function() {
+  'use strict';
+
+  // Cache DOM elements
+  const DOM = {
+    tabButtons: null,
+    tabPanes: null,
+    fechaActual: null,
+    horaActual: null,
+    faseActual: null,
+    cronogramaTitulo: null,
+    cronogramaContent: null
+  };
+
+  // Cronograma data cache
+  let cronogramaData = null;
+
+  // Month name to number mapping
+  const MESES = {
+    'enero': 1, 'febrero': 2, 'marzo': 3, 'abril': 4,
+    'mayo': 5, 'junio': 6, 'julio': 7, 'agosto': 8,
+    'septiembre': 9, 'octubre': 10, 'noviembre': 11, 'diciembre': 12
+  };
+
+  /**
+   * Initialize DOM cache
+   */
+  function initDOM() {
+    DOM.tabButtons = document.querySelectorAll('.tab-button');
+    DOM.tabPanes = document.querySelectorAll('.tab-pane');
+    DOM.fechaActual = document.getElementById('fecha-actual');
+    DOM.horaActual = document.getElementById('hora-actual');
+    DOM.faseActual = document.getElementById('fase-actual');
+    DOM.cronogramaTitulo = document.getElementById('cronograma-titulo');
+    DOM.cronogramaContent = document.getElementById('cronograma-content');
+  }
+
+  /**
+   * Setup tab navigation
+   */
+  function setupTabs() {
+    if (!DOM.tabButtons.length || !DOM.tabPanes.length) return;
+
+    DOM.tabButtons[0].classList.add('active');
+    DOM.tabPanes[0].classList.add('active');
+
+    DOM.tabButtons.forEach(function(button) {
+      button.addEventListener('click', function() {
+        var tabId = this.getAttribute('data-tab');
+
+        DOM.tabButtons.forEach(function(btn) { btn.classList.remove('active'); });
+        DOM.tabPanes.forEach(function(pane) { pane.classList.remove('active'); });
+
+        this.classList.add('active');
+        var targetPane = document.getElementById(tabId);
+        if (targetPane) {
+          targetPane.classList.add('active');
+        }
+      });
+    });
+  }
+
+  /**
+   * Setup intersection observer for scroll animations with stagger effect
+   */
+  function setupScrollAnimations() {
+    var staggerIndex = 0;
+
+    var observer = new IntersectionObserver(function(entries) {
+      var visibleEntries = entries.filter(function(e) { return e.isIntersecting; });
+      visibleEntries.forEach(function(entry, i) {
+        var delay = i * 80;
+        setTimeout(function() {
+          entry.target.style.opacity = '1';
+          entry.target.style.transform = 'translateY(0)';
+        }, delay);
+        observer.unobserve(entry.target);
+      });
+    }, { threshold: 0.1, rootMargin: '0px 0px -30px 0px' });
+
+    var sections = document.querySelectorAll(
+      '.info-section, .objective-card, .tech-section, .feature-card, .future-section, .deployment-section, .phase, .stat-card, .progress-section'
+    );
+
+    sections.forEach(function(section) {
+      section.style.opacity = '0';
+      section.style.transform = 'translateY(20px)';
+      section.style.transition = 'opacity 0.6s cubic-bezier(0.4, 0, 0.2, 1), transform 0.6s cubic-bezier(0.4, 0, 0.2, 1)';
+      observer.observe(section);
+    });
+  }
+
+  /**
+   * Load cronograma data from JSON (single fetch, cached)
+   */
+  async function loadCronograma() {
     try {
-        const response = await fetch('cronograma.json');
-        const data = await response.json();
+      var response = await fetch('cronograma.json');
+      cronogramaData = await response.json();
 
-        const tituloElement = document.getElementById('cronograma-titulo');
-        const contentElement = document.getElementById('cronograma-content');
+      if (DOM.cronogramaTitulo) {
+        DOM.cronogramaTitulo.textContent = cronogramaData.titulo;
+      }
 
-        // Set title
-        tituloElement.textContent = data.titulo;
+      if (DOM.cronogramaContent) {
+        DOM.cronogramaContent.innerHTML = buildCronogramaHTML(cronogramaData);
+      }
 
-        // Generate HTML for periods
-        let html = '';
-        data.periodos.forEach(periodo => {
-            html += `
-                <div class="periodo-section">
-                    <h2 class="periodo-titulo">${periodo.titulo}</h2>
-                    <div class="dias-grid">
-            `;
-
-            periodo.dias.forEach(dia => {
-                html += `
-                    <div class="dia-calendario">
-                        <h3>${dia.fecha}: ${dia.titulo}</h3>
-                        <div class="dia-actividades">
-                            <ul class="cronograma-list">
-                                ${dia.actividades.map(actividad => `<li>${actividad}</li>`).join('')}
-                            </ul>
-                        </div>
-                    </div>
-                `;
-            });
-
-            html += `
-                    </div>
-                </div>
-            `;
-        });
-
-        contentElement.innerHTML = html;
+      // Update phase and progress after data is loaded
+      updatePhase();
+      updateProgressStats();
 
     } catch (error) {
-        console.error('Error loading cronograma:', error);
-        document.getElementById('cronograma-titulo').textContent = 'Error al cargar el cronograma';
-        document.getElementById('cronograma-content').innerHTML = '<p>No se pudo cargar la información del cronograma.</p>';
+      console.error('Error loading cronograma:', error);
+      if (DOM.cronogramaTitulo) {
+        DOM.cronogramaTitulo.textContent = 'Error al cargar el cronograma';
+      }
+      if (DOM.cronogramaContent) {
+        DOM.cronogramaContent.innerHTML = '<p>No se pudo cargar la información del cronograma.</p>';
+      }
     }
-}
+  }
 
-// Tab functionality for the Action Plan viewer
-document.addEventListener('DOMContentLoaded', function() {
-    const tabButtons = document.querySelectorAll('.tab-button');
-    const tabPanes = document.querySelectorAll('.tab-pane');
+  /**
+   * Build cronograma HTML from data
+   */
+  function buildCronogramaHTML(data) {
+    var html = '';
+    data.periodos.forEach(function(periodo) {
+      html += '<div class="periodo-section"><h2 class="periodo-titulo">' +
+        periodo.titulo + '</h2><div class="dias-grid">';
 
-    // Initialize first tab as active (Resumen Ejecutivo)
-    if (tabButtons.length > 0 && tabPanes.length > 0) {
-        tabButtons[0].classList.add('active');
-        tabPanes[0].classList.add('active');
+      periodo.dias.forEach(function(dia) {
+        var actividades = dia.actividades.map(function(a) {
+          return '<li>' + a + '</li>';
+        }).join('');
+
+        html += '<div class="dia-calendario"><h3>' + dia.fecha + ': ' +
+          dia.titulo + '</h3><div class="dia-actividades"><ul class="cronograma-list">' +
+          actividades + '</ul></div></div>';
+      });
+
+      html += '</div></div>';
+    });
+    return html;
+  }
+
+  /**
+   * Update current date and time display
+   */
+  function updateDateTime() {
+    var now = new Date();
+
+    if (DOM.fechaActual) {
+      DOM.fechaActual.textContent = now.toLocaleDateString('es-ES', {
+        weekday: 'long', year: 'numeric', month: 'long', day: 'numeric'
+      });
     }
 
-    tabButtons.forEach(button => {
-        button.addEventListener('click', () => {
-            const tabId = button.getAttribute('data-tab');
+    if (DOM.horaActual) {
+      var h = String(now.getHours()).padStart(2, '0');
+      var m = String(now.getMinutes()).padStart(2, '0');
+      var s = String(now.getSeconds()).padStart(2, '0');
+      DOM.horaActual.textContent = h + ':' + m + ':' + s;
+    }
+  }
 
-            // Remove active class from all buttons and panes
-            tabButtons.forEach(btn => btn.classList.remove('active'));
-            tabPanes.forEach(pane => pane.classList.remove('active'));
+  /**
+   * Update current phase based on cronograma data
+   */
+  function updatePhase() {
+    if (!DOM.faseActual || !cronogramaData) return;
 
-            // Add active class to clicked button and corresponding pane
-            button.classList.add('active');
-            const targetPane = document.getElementById(tabId);
-            if (targetPane) {
-                targetPane.classList.add('active');
-            }
-        });
-    });
+    var now = new Date();
+    var day = now.getDate();
+    var month = now.getMonth() + 1;
+    var diaActual = 'Proyecto en curso';
 
-    // Add smooth scrolling for anchor links
-    const links = document.querySelectorAll('a[href^="#"]');
-    links.forEach(link => {
-        link.addEventListener('click', function(e) {
-            e.preventDefault();
-            const targetId = this.getAttribute('href').substring(1);
-            const targetElement = document.getElementById(targetId);
-            if (targetElement) {
-                targetElement.scrollIntoView({
-                    behavior: 'smooth',
-                    block: 'start',
-                });
-            }
-        });
-    });
+    for (var i = 0; i < cronogramaData.periodos.length; i++) {
+      var periodo = cronogramaData.periodos[i];
+      for (var j = 0; j < periodo.dias.length; j++) {
+        var dia = periodo.dias[j];
+        var parts = dia.fecha.split(' ');
+        var diaNum = parseInt(parts[0], 10);
+        var mesStr = (parts[1] || '').toLowerCase();
+        var mesNum = MESES[mesStr];
 
-    // Add animation delay for tab content
-    tabPanes.forEach((pane, index) => {
-        if (index > 0) {
-            pane.style.animationDelay = `${index * 0.1}s`;
+        if (diaNum === day && mesNum === month) {
+          diaActual = dia.titulo;
+          DOM.faseActual.textContent = diaActual;
+          return;
         }
+      }
+    }
+
+    // Fallback phases
+    if (month === 1) {
+      if (day >= 28 && day <= 31) diaActual = 'Fase 1: Sistema CUIT';
+    } else if (month === 2) {
+      if (day >= 1 && day <= 13) diaActual = 'Fase 1: Cierre Sistema CUIT';
+      else if (day >= 14 && day <= 28) diaActual = 'Fase 2: Riesgo Crediticio + APIs BCRA';
+    } else if (month === 3) {
+      if (day <= 13) diaActual = 'Fase 2: Riesgo Crediticio (Entrega 13 Marzo)';
+      else diaActual = 'Proyecto Completado - En Mantenimiento';
+    } else {
+      diaActual = 'Proyecto Completado - En Mantenimiento';
+    }
+
+    DOM.faseActual.textContent = diaActual;
+  }
+
+  /**
+   * Parse a cronograma date string and return a Date object (year 2026)
+   * Handles: "28 Enero", "9-13 Febrero", "23 Febrero - 12 Marzo"
+   * Returns { start: Date, end: Date }
+   */
+  function parseCronogramaDate(fechaStr) {
+    var year = 2026;
+
+    // Range with different months: "23 Febrero - 12 Marzo"
+    var rangeMatch = fechaStr.match(/(\d+)\s+(\w+)\s*-\s*(\d+)\s+(\w+)/);
+    if (rangeMatch) {
+      var startMonth = MESES[rangeMatch[2].toLowerCase()];
+      var endMonth = MESES[rangeMatch[4].toLowerCase()];
+      if (startMonth && endMonth) {
+        return {
+          start: new Date(year, startMonth - 1, parseInt(rangeMatch[1])),
+          end: new Date(year, endMonth - 1, parseInt(rangeMatch[3]))
+        };
+      }
+    }
+
+    // Range same month: "9-13 Febrero"
+    var sameMonthRange = fechaStr.match(/(\d+)-(\d+)\s+(\w+)/);
+    if (sameMonthRange) {
+      var month = MESES[sameMonthRange[3].toLowerCase()];
+      if (month) {
+        return {
+          start: new Date(year, month - 1, parseInt(sameMonthRange[1])),
+          end: new Date(year, month - 1, parseInt(sameMonthRange[2]))
+        };
+      }
+    }
+
+    // Single date: "28 Enero"
+    var singleMatch = fechaStr.match(/(\d+)\s+(\w+)/);
+    if (singleMatch) {
+      var m = MESES[singleMatch[2].toLowerCase()];
+      if (m) {
+        var d = new Date(year, m - 1, parseInt(singleMatch[1]));
+        return { start: d, end: d };
+      }
+    }
+
+    return null;
+  }
+
+  /**
+   * Calculate and update progress stats based on cronograma dates
+   */
+  function updateProgressStats() {
+    if (!cronogramaData) return;
+
+    var now = new Date();
+    now.setHours(0, 0, 0, 0);
+
+    var totalDias = 0;
+    var diasCompletados = 0;
+    var diasEnCurso = 0;
+    var diasPendientes = 0;
+    var totalProyectos = cronogramaData.periodos.length;
+    var proyectosCompletados = 0;
+    var proyectosEnCurso = 0;
+
+    cronogramaData.periodos.forEach(function(periodo, pIdx) {
+      var periodoCompleto = true;
+      var periodoEnCurso = false;
+
+      periodo.dias.forEach(function(dia) {
+        totalDias++;
+        var parsed = parseCronogramaDate(dia.fecha);
+        if (!parsed) { diasPendientes++; return; }
+
+        if (now > parsed.end) {
+          diasCompletados++;
+        } else if (now >= parsed.start && now <= parsed.end) {
+          diasEnCurso++;
+          periodoEnCurso = true;
+          periodoCompleto = false;
+        } else {
+          diasPendientes++;
+          periodoCompleto = false;
+        }
+      });
+
+      if (periodoCompleto && periodo.dias.length > 0) proyectosCompletados++;
+      else if (periodoEnCurso) proyectosEnCurso++;
     });
 
-    // Add loading animation for content
-    const observerOptions = {
-        threshold: 0.1,
-        rootMargin: '0px 0px -50px 0px'
-    };
+    var percent = totalDias > 0 ? Math.round((diasCompletados / totalDias) * 100) : 0;
 
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.style.opacity = '1';
-                entry.target.style.transform = 'translateY(0)';
-            }
+    // Update stat cards
+    var statFases = document.getElementById('stat-fases');
+    var statCompletadas = document.getElementById('stat-completadas');
+    var statDesarrollo = document.getElementById('stat-desarrollo');
+    var statPendientes = document.getElementById('stat-pendientes');
+
+    if (statFases) statFases.textContent = totalProyectos;
+    if (statCompletadas) statCompletadas.textContent = proyectosCompletados;
+    if (statDesarrollo) statDesarrollo.textContent = proyectosEnCurso;
+    if (statPendientes) statPendientes.textContent = diasPendientes;
+
+    // Update progress bar
+    var progressFill = document.getElementById('progress-fill');
+    if (progressFill) {
+      setTimeout(function() {
+        progressFill.style.width = percent + '%';
+        progressFill.textContent = percent + '%';
+      }, 300);
+    }
+
+    // Build legend from periodos
+    var legend = document.getElementById('progress-legend');
+    if (legend) {
+      var html = '';
+      cronogramaData.periodos.forEach(function(periodo) {
+        var pCompleto = true;
+        var pEnCurso = false;
+        periodo.dias.forEach(function(dia) {
+          var parsed = parseCronogramaDate(dia.fecha);
+          if (!parsed) return;
+          if (now <= parsed.end) pCompleto = false;
+          if (now >= parsed.start && now <= parsed.end) pEnCurso = true;
         });
-    }, observerOptions);
 
-    // Observe all sections for animation (including cronograma sections)
-    const sections = document.querySelectorAll('.info-section, .objective-card, .tech-section, .feature-card, .future-section, .deployment-section, .dia-section');
-    sections.forEach(section => {
-        section.style.opacity = '0';
-        section.style.transform = 'translateY(20px)';
-        section.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
-        observer.observe(section);
-    });
+        var dotClass = 'dot-pending';
+        if (pCompleto && periodo.dias.length > 0) dotClass = 'dot-completed';
+        else if (pEnCurso) dotClass = 'dot-in-progress';
 
-    // Load cronograma data
+        // Extract short name from title
+        var name = periodo.titulo.replace(/^[^\s]+\s*/, '').split('(')[0].trim();
+        if (name.length > 30) name = name.substring(0, 30) + '...';
+
+        html += '<span class="progress-phase-label"><span class="dot ' + dotClass + '"></span> ' + name + '</span>';
+      });
+      legend.innerHTML = html;
+    }
+  }
+
+  /**
+   * Main initialization
+   */
+  document.addEventListener('DOMContentLoaded', function() {
+    initDOM();
+    setupTabs();
     loadCronograma();
+    setupScrollAnimations();
+    updateDateTime();
+    setInterval(updateDateTime, 1000);
+  });
 
-    // Add click tracking for external links
-    const externalLinks = document.querySelectorAll('a[target="_blank"]');
-    externalLinks.forEach(link => {
-        link.addEventListener('click', function() {
-            // Could add analytics tracking here
-            console.log('External link clicked:', this.href);
-        });
-    });
-
-    console.log('Plan de Acción - Sistema CUIT loaded successfully');
-});
-
-// Function to update current date, time and phase
-function updateCurrentInfo() {
-    const now = new Date();
-
-    // Format date
-    const options = {
-        weekday: 'long',
-        year: 'numeric',
-        month: 'long',
-        day: 'numeric'
-    };
-    const fechaElement = document.getElementById('fecha-actual');
-    if (fechaElement) {
-        fechaElement.textContent = now.toLocaleDateString('es-ES', options);
-    }
-
-    // Format time with seconds
-    const horaElement = document.getElementById('hora-actual');
-    if (horaElement) {
-        const hours = now.getHours().toString().padStart(2, '0');
-        const minutes = now.getMinutes().toString().padStart(2, '0');
-        const seconds = now.getSeconds().toString().padStart(2, '0');
-        horaElement.textContent = `${hours}:${minutes}:${seconds}`;
-    }
-
-    // Determine current day based on date
-    const faseElement = document.getElementById('fase-actual');
-    if (faseElement) {
-        const day = now.getDate();
-        const month = now.getMonth() + 1; // JavaScript months are 0-indexed
-
-        let diaActual = "Proyecto Completado";
-
-        // Find the specific day in cronograma
-        try {
-            // Load cronograma data synchronously (assuming it's already loaded)
-            fetch('cronograma.json')
-                .then(response => response.json())
-                .then(data => {
-                    let found = false;
-
-                    // Search through all periods and days
-                    for (const periodo of data.periodos) {
-                        for (const dia of periodo.dias) {
-                            // Parse the date from the dia.fecha (format: "7 Enero", "8 Enero", etc.)
-                            const fechaParts = dia.fecha.split(' ');
-                            const diaNum = parseInt(fechaParts[0]);
-                            const mesStr = fechaParts[1].toLowerCase();
-
-                            // Convert month name to number
-                            const meses = {
-                                'enero': 1, 'febrero': 2, 'marzo': 3, 'abril': 4, 'mayo': 5, 'junio': 6,
-                                'julio': 7, 'agosto': 8, 'septiembre': 9, 'octubre': 10, 'noviembre': 11, 'diciembre': 12
-                            };
-
-                            const mesNum = meses[mesStr];
-
-                            // Check if this is the current date
-                            if (diaNum === day && mesNum === month) {
-                                diaActual = dia.titulo;
-                                found = true;
-                                break;
-                            }
-                        }
-                        if (found) break;
-                    }
-
-                    if (!found) {
-                        // If not found in cronograma, show general phase
-                        if (month === 1) {
-                            if (day >= 1 && day <= 7) {
-                                diaActual = "Inicio del Proyecto";
-                            } else if (day >= 8 && day <= 22) {
-                                diaActual = "Fase 1: Planificación";
-                            } else if (day >= 23 && day <= 31) {
-                                diaActual = "Fase 2: Implementación";
-                            }
-                        } else if (month === 2 && day >= 1 && day <= 7) {
-                            diaActual = "Fase 2: Implementación (Final)";
-                        } else {
-                            diaActual = "Proyecto Completado - En Mantenimiento";
-                        }
-                    }
-
-                    faseElement.textContent = diaActual;
-                })
-                .catch(error => {
-                    console.error('Error loading cronograma for phase:', error);
-                    faseElement.textContent = "Error al determinar fase actual";
-                });
-        } catch (error) {
-            console.error('Error in phase determination:', error);
-            faseElement.textContent = "Error al determinar fase actual";
-        }
-    }
-}
-
-// Update info immediately and then every second
-updateCurrentInfo();
-setInterval(updateCurrentInfo, 1000);
-
-// Function to load cronograma from JSON
-async function loadCronograma() {
-    try {
-        const response = await fetch('cronograma.json');
-        const data = await response.json();
-
-        const tituloElement = document.getElementById('cronograma-titulo');
-        const contentElement = document.getElementById('cronograma-content');
-
-        // Set title
-        tituloElement.textContent = data.titulo;
-
-        // Generate HTML for periods
-        let html = '';
-        data.periodos.forEach(periodo => {
-            html += `
-                <div class="periodo-section">
-                    <h2 class="periodo-titulo">${periodo.titulo}</h2>
-                    <div class="dias-grid">
-            `;
-
-            periodo.dias.forEach(dia => {
-                html += `
-                    <div class="dia-calendario">
-                        <h3>${dia.fecha}: ${dia.titulo}</h3>
-                        <div class="dia-actividades">
-                            <ul class="cronograma-list">
-                                ${dia.actividades.map(actividad => `<li>${actividad}</li>`).join('')}
-                            </ul>
-                        </div>
-                    </div>
-                `;
-            });
-
-            html += `
-                    </div>
-                </div>
-            `;
-        });
-
-        contentElement.innerHTML = html;
-
-    } catch (error) {
-        console.error('Error loading cronograma:', error);
-        document.getElementById('cronograma-titulo').textContent = 'Error al cargar el cronograma';
-        document.getElementById('cronograma-content').innerHTML = '<p>No se pudo cargar la información del cronograma.</p>';
-    }
-};
+})();

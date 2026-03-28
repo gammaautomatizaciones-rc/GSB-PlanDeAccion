@@ -2,513 +2,249 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Plan de Acción - | GSB</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>Plan de Accion | GSB</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
   <link rel="stylesheet" href="plan_accion.css" />
 </head>
 <body>
-  <header class="header">
-    <nav class="navbar">
-      <div class="navbar-left">
-        <div class="brand-logos">
-          <div class="brand-logo">SHELL</div>
-          <div class="brand-logo">AXION</div>
-        </div>
-      </div>
-      <div class="navbar-center">
-        <div class="logo">Plan de Acción</div>
-      </div>
-      <div class="navbar-right">
-        <span class="greeting">Grupo SORBONA BERRIA</span>
-      </div>
-    </nav>
-  </header>
 
-  <div class="main-content">
-    <div class="tabs">
-      <button class="tab-button active" data-tab="overview">Resumen Ejecutivo</button>
-      <button class="tab-button" data-tab="cronograma">Cronograma</button>
-      <button class="tab-button" data-tab="objectives">Objetivos</button>
-      <button class="tab-button" data-tab="development">Desarrollo</button>
-      <button class="tab-button" data-tab="technologies">Tecnologías</button>
-      <button class="tab-button" data-tab="features">Características</button>
-      <button class="tab-button" data-tab="deployment">Despliegue</button>
-      <button class="tab-button" data-tab="future">Futuro</button>
+<!-- ================================================================
+     DESKTOP LAYOUT (visible >= 769px)
+     ================================================================ -->
+
+<nav class="desk-topbar">
+  <div><span class="desk-topbar-brand">GSB <span>Plan de Accion</span></span></div>
+  <div class="desk-topbar-right">Grupo SORBONA BERRIA</div>
+</nav>
+
+<aside class="desk-sidebar">
+  <div class="desk-sidebar-section">
+    <div class="desk-sidebar-label">NAVEGACION</div>
+    <button class="desk-sidebar-link active" data-desk="d-resumen"><i class="fas fa-chart-pie"></i> Resumen</button>
+    <button class="desk-sidebar-link" data-desk="d-cronograma"><i class="fas fa-calendar-alt"></i> Cronograma</button>
+    <button class="desk-sidebar-link" data-desk="d-fases"><i class="fas fa-layer-group"></i> Fases</button>
+    <button class="desk-sidebar-link" data-desk="d-objetivos"><i class="fas fa-bullseye"></i> Objetivos</button>
+    <button class="desk-sidebar-link" data-desk="d-caracteristicas"><i class="fas fa-puzzle-piece"></i> Caracteristicas</button>
+    <button class="desk-sidebar-link" data-desk="d-despliegue"><i class="fas fa-rocket"></i> Despliegue</button>
+  </div>
+  <div class="desk-sidebar-footer">
+    <div class="desk-sidebar-footer-brand">GAMMA</div>
+    <div class="desk-sidebar-footer-sub">Automatizaciones</div>
+  </div>
+</aside>
+
+<main class="desk-content">
+
+  <!-- RESUMEN -->
+  <div id="d-resumen" class="desk-page active">
+    <div class="desk-page-header">
+      <h1>Resumen Ejecutivo</h1>
+      <div class="desk-page-header-meta"><span id="d-fecha"></span><span class="sep">|</span><span id="d-hora"></span></div>
     </div>
+    <div class="d-cards d-cards-4">
+      <div class="d-stat-card"><div class="d-stat-icon"><i class="fas fa-layer-group"></i></div><div><div class="d-stat-num" id="d-stat-fases">4</div><div class="d-stat-label">Fases Totales</div></div></div>
+      <div class="d-stat-card"><div class="d-stat-icon green"><i class="fas fa-check-circle"></i></div><div><div class="d-stat-num green" id="d-stat-completadas">-</div><div class="d-stat-label">Completadas</div></div></div>
+      <div class="d-stat-card"><div class="d-stat-icon yellow"><i class="fas fa-cog fa-spin"></i></div><div><div class="d-stat-num yellow" id="d-stat-desarrollo">-</div><div class="d-stat-label">En Desarrollo</div></div></div>
+      <div class="d-stat-card"><div class="d-stat-icon"><i class="fas fa-tasks"></i></div><div><div class="d-stat-num" id="d-stat-tareas">-</div><div class="d-stat-label">Tareas Hechas</div></div></div>
+    </div>
+    <div class="d-cards d-cards-2">
+      <div class="d-card"><div class="d-card-header"><i class="fas fa-info-circle"></i> Informacion del Proyecto</div><div class="d-card-body">
+        <div class="d-info-row"><span>Nombre</span><span>Sistema de Gestion Integral GSB</span></div>
+        <div class="d-info-row"><span>Cliente</span><span>Grupo SORBONA BERRIA</span></div>
+        <div class="d-info-row"><span>Fase Actual</span><span><span class="d-badge d-badge-progress" id="d-fase-actual">Cargando...</span></span></div>
+        <div class="d-info-row"><span>Version</span><span>3.0</span></div>
+        <div class="d-info-row"><span>Estado</span><span><span class="d-badge d-badge-progress">En desarrollo</span></span></div>
+      </div></div>
+      <div class="d-card"><div class="d-card-header"><i class="fas fa-dollar-sign"></i> Costos</div><div class="d-card-body">
+        <div class="d-cost-item"><span>Desarrollo inicial</span><span class="d-cost-val">$ 500.000</span></div>
+        <div class="d-cost-item"><span>Repositorio GitHub</span><span class="d-cost-val free">$ 0 USD</span></div>
+        <div class="d-cost-item"><span>Abono mensual de soporte</span><span class="d-cost-val">$ 630.000</span></div>
+        <div class="d-cost-note">Incluye soporte de las aplicaciones y desarrollo de nuevas integraciones</div>
+      </div></div>
+    </div>
+    <div class="d-card"><div class="d-card-header"><i class="fas fa-chart-bar"></i> Progreso General</div><div class="d-card-body">
+      <div class="d-progress-bar-bg"><div class="d-progress-bar-fill" id="d-progress-fill" style="width:0%;">0%</div></div>
+      <div class="d-progress-legend" id="d-progress-legend"></div>
+    </div></div>
+  </div>
 
-    <div class="tab-content">
-      <div id="overview" class="tab-pane active">
-        <div class="container">
-          <h2>Resumen Ejecutivo</h2>
-          <div class="info-grid">
-            <div class="info-section">
-              <h3>📋 Información del Proyecto</h3>
-              <div class="info-item"><strong>Nombre:</strong> Sistema de Consulta de CUIT</div>
-              <div class="info-item"><strong>Cliente:</strong> Grupo SORBONA BERRIA</div>
-              <div class="info-item"><strong>Fecha Actual:</strong> <span id="fecha-actual">Cargando...</span></div>
-              <div class="info-item"><strong>Hora Actual:</strong> <span id="hora-actual">Cargando...</span></div>
-              <div class="info-item"><strong>Fase Actual:</strong> <span id="fase-actual">Cargando...</span></div>
-              <div class="info-item"><strong>Versión:</strong> 1.0</div>
-              <div class="info-item"><strong>Estado:</strong> <span class="status-completed">En proceso de desarrollo</span></div>
-            </div>
-            <div class="info-section">
-              <h3>🎯 Objetivo Principal</h3>
-              <p>Desarrollar un sistema web profesional para consultas de CUIT (Código Único de Identificación Tributaria) de Argentina, con interfaz moderna, segura y optimizada para dispositivos móviles, respaldado por una base de datos centralizada.</p>
-            </div>
+  <!-- CRONOGRAMA -->
+  <div id="d-cronograma" class="desk-page">
+    <div class="desk-page-header"><h1>Cronograma de Desarrollo</h1></div>
+    <div id="d-crono-content"></div>
+  </div>
 
-            <div class="info-section">
-              <h3>💰 Costos</h3>
-              <div class="cost-breakdown">
-                <div class="cost-item"><strong>Desarrollo:</strong> $500.000 ARS</div>
-                <div class="cost-item"><strong>Repositorio GitHub:</strong> $0 USD</div>
-                <div class="cost-item"><strong>Abono mensual de soporte:</strong> $630.000 ARS</div>
-                <div class="cost-item" style="font-size: 0.85em; opacity: 0.85; margin-top: 4px;"><em>Incluye soporte de las aplicaciones y desarrollo de nuevas integraciones complejas</em></div>
-              </div>
-            </div>
-          </div>
+  <!-- FASES -->
+  <div id="d-fases" class="desk-page">
+    <div class="desk-page-header"><h1>Fases de Desarrollo</h1><p class="desk-page-subtitle">Hace click en cada tarea para marcarla como completada</p></div>
+    <div class="d-timeline" id="d-fases-timeline"></div>
+  </div>
 
-          <div class="stats-row">
-            <div class="stat-card">
-              <div class="stat-number" id="stat-fases">-</div>
-              <div class="stat-label">Fases Totales</div>
-            </div>
-            <div class="stat-card">
-              <div class="stat-number" id="stat-completadas">-</div>
-              <div class="stat-label">Completadas</div>
-            </div>
-            <div class="stat-card">
-              <div class="stat-number" id="stat-desarrollo">-</div>
-              <div class="stat-label">En Desarrollo</div>
-            </div>
-            <div class="stat-card">
-              <div class="stat-number" id="stat-pendientes">-</div>
-              <div class="stat-label">Tareas Pendientes</div>
-            </div>
-          </div>
-
-          <div class="progress-section">
-            <h3>📊 Progreso General del Proyecto</h3>
-            <div class="progress-bar-container">
-              <div class="progress-bar-fill" id="progress-fill" style="width: 0%;">0%</div>
-            </div>
-            <div class="progress-phases" id="progress-legend"></div>
-          </div>
-        </div>
-      </div>
-
-      <div id="cronograma" class="tab-pane">
-        <div class="container">
-          <h1 id="cronograma-titulo">Cargando cronograma...</h1>
-          <div id="cronograma-content" class="cronograma-calendario">
-            <!-- El contenido se cargará dinámicamente desde cronograma.json -->
-          </div>
-        </div>
-      </div>
-
-      <div id="objectives" class="tab-pane">
-        <div class="container">
-          <h1>Objetivos del Proyecto</h1>
-          <div class="objectives-grid">
-            <div class="objective-card">
-              <h3>🎯 Objetivo Principal</h3>
-              <p>Sistema web profesional para consultas de CUIT y Riesgo Crediticio con interfaz moderna, segura y optimizada para móviles</p>
-            </div>
-            <div class="objective-card">
-              <h3>🔐 Autenticación</h3>
-              <p>Implementar sistema de autenticación seguro con contraseña</p>
-            </div>
-            <div class="objective-card">
-              <h3>📱 Mobile First</h3>
-              <p>Diseño responsive optimizado para dispositivos móviles con interfaz adaptativa</p>
-            </div>
-            <div class="objective-card">
-              <h3>🗄️ Base de Datos</h3>
-              <p>Base de datos centralizada para almacenamiento persistente de consultas CUIT y datos de riesgo crediticio</p>
-            </div>
-            <div class="objective-card">
-              <h3>🏛️ Integración API ARCA</h3>
-              <p>Integración con la API de ARCA (ex AFIP) para obtención y validación de datos tributarios de contribuyentes</p>
-            </div>
-            <div class="objective-card">
-              <h3>🏦 APIs BCRA</h3>
-              <p>Integración con APIs del Banco Central (BCRA) para obtener datos de riesgo crediticio en tiempo real</p>
-            </div>
-            <div class="objective-card">
-              <h3>🎨 Diseño Profesional</h3>
-              <p>Desarrollar diseño con colores corporativos negro-dorado-blanco</p>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div id="development" class="tab-pane">
-        <div class="container">
-          <h1>Fases de Desarrollo</h1>
-          <div class="phases-timeline">
-            <div class="phase">
-              <div class="phase-header">
-                <span class="phase-number">1</span>
-                <h3>Planificación y Análisis</h3>
-                <span class="badge badge-completed">Completada</span>
-              </div>
-              <ul class="phase-tasks">
-                <li>✓ Estudio detallado de la base de datos de CUIT masiva</li>
-                <li>✓ Diseño de la estructura de información tributaria</li>
-                <li>✓ Definición de identidad visual corporativa (negro-dorado-blanco)</li>
-                <li>✓ Organización de módulos: Consulta, Riesgo Crediticio y Notas</li>
-                <li>✓ Diseño de arquitectura de base de datos centralizada</li>
-              </ul>
-            </div>
-            <div class="phase">
-              <div class="phase-header">
-                <span class="phase-number">2</span>
-                <h3>Desarrollo del Núcleo</h3>
-                <span class="badge badge-completed">Completada</span>
-              </div>
-              <ul class="phase-tasks">
-                <li>✓ Armado de la estructura HTML5 semántica y accesible</li>
-                <li>✓ Header fijo con navegación profesional</li>
-                <li>✓ Sistema de pestañas para organizar las funcionalidades</li>
-                <li>✓ Contenedores responsive optimizados para móviles (Mobile First)</li>
-                <li>✓ Integración con base de datos para consulta tributaria</li>
-                <li>✓ Optimización de rendimiento para dispositivos móviles</li>
-              </ul>
-            </div>
-            <div class="phase">
-              <div class="phase-header">
-                <span class="phase-number">3</span>
-                <h3>Autenticación y Seguridad</h3>
-                <span class="badge badge-completed">Completada</span>
-              </div>
-              <ul class="phase-tasks">
-                <li>✓ Modal de login elegante para acceso controlado</li>
-                <li>✓ Sistema de contraseña temporal "berria2024"</li>
-                <li>✓ Sesión persistente que mantiene al usuario logueado</li>
-                <li>✓ Control de permisos por módulo y funcionalidad</li>
-                <li>✓ Protección de información sensible de contribuyentes</li>
-              </ul>
-            </div>
-            <div class="phase">
-              <div class="phase-header">
-                <span class="phase-number">4</span>
-                <h3>Interfaz de Usuario</h3>
-                <span class="badge badge-completed">Completada</span>
-              </div>
-              <ul class="phase-tasks">
-                <li>✓ Navbar con branding de SHELL y AXION integrado</li>
-                <li>✓ Aplicación de paleta corporativa en toda la interfaz</li>
-                <li>✓ Animaciones fluidas que mejoran la experiencia</li>
-                <li>✓ Botones interactivos con efectos visuales atractivos</li>
-                <li>✓ Iconografía clara y moderna para mejor navegación</li>
-              </ul>
-            </div>
-            <div class="phase">
-              <div class="phase-header">
-                <span class="phase-number">5</span>
-                <h3>Funcionalidades Específicas</h3>
-                <span class="badge badge-completed">Completada</span>
-              </div>
-              <ul class="phase-tasks">
-                <li>✓ Motor de búsqueda de CUIT con resultados instantáneos desde base de datos</li>
-                <li>✓ Presentación de datos en tarjetas de 4 columnas ordenadas</li>
-                <li>✓ Comparador de CUITs: análisis lado a lado de múltiples contribuyentes</li>
-                <li>✓ Sección de Estadísticas de Uso con métricas y gráficos de actividad</li>
-                <li>✓ Bloc de notas con guardado automático local</li>
-                <li>✓ Preparación del módulo de evaluación crediticia</li>
-                <li>✓ Validaciones robustas y manejo de errores amigable</li>
-              </ul>
-            </div>
-            <div class="phase">
-              <div class="phase-header">
-                <span class="phase-number">6</span>
-                <h3>Optimización y Pulido</h3>
-                <span class="badge badge-completed">Completada</span>
-              </div>
-              <ul class="phase-tasks">
-                <li>✓ Control del scroll para experiencia de usuario controlada</li>
-                <li>✓ Optimización de animaciones para rendimiento fluido</li>
-                <li>✓ Diseño optimizado para móviles (Mobile First) y desktop</li>
-                <li>✓ Testing en diferentes navegadores y dispositivos</li>
-                <li>✓ Código limpio, comentado y mantenible</li>
-              </ul>
-            </div>
-            <div class="phase phase-future">
-              <div class="phase-header">
-                <span class="phase-number">7</span>
-                <h3>Fase 2: Sistema de Riesgo Crediticio</h3>
-                <span class="badge badge-in-progress">En Desarrollo</span>
-              </div>
-              <ul class="phase-tasks">
-                <li>&#9744; Integración con APIs del BCRA (Central de Deudores)</li>
-                <li>&#9744; Configuración de endpoints BCRA para consulta de situación crediticia</li>
-                <li>&#9744; Base de datos dedicada para almacenamiento de consultas y resultados</li>
-                <li>&#9744; Motor de evaluación de riesgo con scoring automático</li>
-                <li>&#9744; Panel de visualización de riesgo con indicadores gráficos</li>
-                <li>&#9744; Sistema de reportes y exportación de evaluaciones</li>
-                <li>&#9744; Historial de consultas crediticias almacenado en base de datos</li>
-                <li>&#9744; Sistema de Alertas Tempranas con actualización automática diaria</li>
-                <li>&#9744; Score de Confianza interno ajustable por el usuario</li>
-              </ul>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div id="technologies" class="tab-pane">
-        <div class="container">
-          <h1>Tecnologías Utilizadas</h1>
-          <div class="tech-grid">
-            <div class="tech-section">
-              <h3>🎨 Frontend</h3>
-              <ul class="tech-list">
-                <li><strong>HTML5:</strong> Estructura semántica con header, nav, main, sections</li>
-                <li><strong>CSS3:</strong> Variables CSS, Flexbox, Grid, Animations, Media Queries</li>
-                <li><strong>JavaScript ES6+:</strong> Async/await, Arrow functions, Template literals</li>
-                <li><strong>Responsive Design:</strong> Mobile First, optimizado para dispositivos móviles</li>
-              </ul>
-            </div>
-            <div class="tech-section">
-              <h3>🗄️ Base de Datos y Almacenamiento</h3>
-              <ul class="tech-list">
-                <li><strong>Base de Datos:</strong> Almacenamiento centralizado de datos CUIT y consultas</li>
-                <li><strong>localStorage:</strong> Para sesión de usuario y notas</li>
-                <li><strong>JSON estructurado:</strong> Para datos de CUIT (consulta_masiva.json)</li>
-              </ul>
-            </div>
-            <div class="tech-section">
-              <h3>🏛️ APIs e Integraciones</h3>
-              <ul class="tech-list">
-                <li><strong>API ARCA (ex AFIP):</strong> Obtención y validación de datos tributarios de contribuyentes</li>
-                <li><strong>API BCRA:</strong> Central de Deudores del Sistema Financiero (Fase 2)</li>
-                <li><strong>API BCRA:</strong> Consulta de situación crediticia de personas y empresas (Fase 2)</li>
-                <li><strong>Base de Datos Riesgo:</strong> Almacenamiento de resultados y histórico de consultas</li>
-              </ul>
-            </div>
-            <div class="tech-section">
-              <h3>🛠️ Herramientas de Desarrollo</h3>
-              <ul class="tech-list">
-                <li><strong>Visual Studio Code:</strong> IDE principal</li>
-                <li><strong>Chrome DevTools:</strong> Testing y debugging</li>
-                <li><strong>Git:</strong> Control de versiones</li>
-              </ul>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div id="features" class="tab-pane">
-        <div class="container">
-          <h1>Características Implementadas</h1>
-          <div class="features-grid">
-            <div class="feature-card">
-              <h3>🔐 Autenticación</h3>
-              <ul>
-                <li>Modal de login al inicio</li>
-                <li>Contraseña: "berria2024"</li>
-                <li>Sesión persistente con localStorage</li>
-                <li>Control de acceso automático</li>
-              </ul>
-            </div>
-            <div class="feature-card">
-              <h3>🧭 Navegación</h3>
-              <ul>
-                <li>Header fijo con branding SORBONA BERRIA</li>
-                <li>Logos SHELL y AXION estilizados</li>
-                <li>Saludo personalizado "Hola Mariano!"</li>
-                <li>Sistema de pestañas responsivo</li>
-              </ul>
-            </div>
-            <div class="feature-card">
-              <h3>⚙️ Funcionalidades</h3>
-              <ul>
-                <li>Búsqueda de CUIT por input de texto</li>
-                <li>Resultados en formato de tarjeta con 4 columnas</li>
-                <li>Información organizada: General, Ubicación, Actividades, Impuestos</li>
-                <li>Sección de Notas con guardado automático</li>
-                <li>Módulo de Riesgo Crediticio (Fase 2)</li>
-              </ul>
-            </div>
-            <div class="feature-card">
-              <h3>🔄 Comparador de CUITs</h3>
-              <ul>
-                <li>Comparación lado a lado de múltiples CUITs</li>
-                <li>Visualización de diferencias entre contribuyentes</li>
-                <li>Análisis comparativo de actividades e impuestos</li>
-                <li>Exportación de comparativas</li>
-              </ul>
-            </div>
-            <div class="feature-card">
-              <h3>📈 Estadísticas de Uso</h3>
-              <ul>
-                <li>Panel de estadísticas de consultas realizadas</li>
-                <li>Métricas de uso del sistema por período</li>
-                <li>Historial de búsquedas y consultas frecuentes</li>
-                <li>Gráficos de actividad y tendencias</li>
-              </ul>
-            </div>
-            <div class="feature-card">
-              <h3>🎨 Diseño y UX</h3>
-              <ul>
-                <li>Paleta corporativa negro-dorado-blanco</li>
-                <li>Animaciones suaves con cubic-bezier easing</li>
-                <li>Interfaz completamente responsive</li>
-                <li>Estados de carga y feedback visual</li>
-                <li>Efectos hover y transiciones elegantes</li>
-              </ul>
-            </div>
-            <div class="feature-card">
-              <h3>🗄️ Base de Datos</h3>
-              <ul>
-                <li>Base de datos centralizada para datos CUIT</li>
-                <li>Almacenamiento persistente de consultas</li>
-                <li>Historial de búsquedas y resultados</li>
-                <li>Base de datos dedicada para Riesgo Crediticio (Fase 2)</li>
-              </ul>
-            </div>
-            <div class="feature-card">
-              <h3>🛡️ Seguridad y Rendimiento</h3>
-              <ul>
-                <li>Base de datos con acceso controlado</li>
-                <li>Bloqueo de scroll para experiencia controlada</li>
-                <li>Validación de inputs</li>
-                <li>Manejo de errores graceful</li>
-                <li>Optimización de carga inicial</li>
-              </ul>
-            </div>
-            <div class="feature-card">
-              <h3>📱 Compatibilidad Mobile</h3>
-              <ul>
-                <li>Diseño Mobile First optimizado</li>
-                <li>Interfaz adaptativa para smartphones y tablets</li>
-                <li>Desktop (1920x1080)</li>
-                <li>Tablet (768px - 1024px)</li>
-                <li>Móvil (320px - 767px)</li>
-              </ul>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div id="deployment" class="tab-pane">
-        <div class="container">
-          <h1>Plan de Despliegue</h1>
-          <div class="deployment-info">
-            <div class="deployment-section">
-              <h3>🌐 Repositorio del Proyecto</h3>
-              <div class="platform-details">
-                <div class="platform-item">
-                  <strong>Plataforma:</strong> GitHub
-                </div>
-                <div class="platform-item">
-                  <strong>Repositorio:</strong> <a href="https://github.com/gammaautomatizaciones-rc/PMGSB" target="_blank">PMGSB</a>
-                </div>
-                <div class="platform-item">
-                  <strong>Contenido:</strong> Código fuente completo del proyecto (HTML, CSS, JavaScript, base de datos y documentación)
-                </div>
-                <div class="platform-item">
-                  <strong>Acceso:</strong> El cliente recibirá acceso completo al repositorio con todos los archivos del proyecto
-                </div>
-              </div>
-            </div>
-            <div class="deployment-section">
-              <h3>📋 Entrega del Proyecto</h3>
-              <ol class="deployment-steps">
-                <li>Código fuente completo subido al repositorio de GitHub</li>
-                <li>Estructura de archivos organizada y documentada</li>
-                <li>Documentación técnica incluida en el repositorio</li>
-                <li>Acceso otorgado al cliente para descarga y revisión</li>
-                <li>El cliente podrá implementar el proyecto en la plataforma de hosting de su elección</li>
-              </ol>
-            </div>
-            <div class="deployment-section">
-              <h3>⚙️ Estructura del Repositorio GitHub</h3>
-              <ul class="config-list">
-                <li><strong>Branch principal:</strong> main</li>
-                <li><strong>Archivos incluidos:</strong> Código fuente, estilos, scripts, base de datos y documentación</li>
-                <li><strong>Control de versiones:</strong> Historial completo de desarrollo con Git</li>
-                <li><strong>Formato:</strong> Listo para despliegue en cualquier plataforma web</li>
-              </ul>
-            </div>
-            <div class="deployment-section">
-              <h3>📋 Política de Entrega</h3>
-              <div class="delivery-policy">
-                <div class="policy-item">
-                  <strong>Entrega Completa:</strong> Todos los documentos y el proyecto se entregarán una vez finalizados completamente.
-                </div>
-                <div class="policy-item">
-                  <strong>No Entregas Parciales:</strong> No se entregará nada por partes. La entrega será única y total al finalizar el desarrollo.
-                </div>
-                <div class="policy-item">
-                  <strong>Condición:</strong> La entrega final se realizará únicamente cuando el sistema esté 100% operativo y todos los componentes integrados.
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div id="future" class="tab-pane">
-        <div class="container">
-          <h1>Próximas Implementaciones</h1>
-          <div class="future-grid">
-            <div class="future-section future-highlight">
-              <h3>📊 Fase 2: Sistema de Riesgo Crediticio</h3>
-              <p>Panel completo para evaluar riesgo crediticio de empresas y particulares.</p>
-              <div class="future-details">
-                <h4>🏦 Integración con APIs del BCRA</h4>
-                <ul>
-                  <li>Conexión con la Central de Deudores del Sistema Financiero del BCRA</li>
-                  <li>Consulta de situación crediticia en tiempo real</li>
-                  <li>Obtención de datos de deuda, clasificación y entidades reportantes</li>
-                  <li>Verificación de cheques rechazados y morosidad</li>
-                </ul>
-                <h4>🗄️ Base de Datos Dedicada</h4>
-                <ul>
-                  <li>Almacenamiento centralizado de todas las consultas realizadas</li>
-                  <li>Historial completo de evaluaciones crediticias por CUIT</li>
-                  <li>Registro de cambios en situación crediticia a lo largo del tiempo</li>
-                  <li>Datos persistentes para análisis y reportes</li>
-                </ul>
-                <h4>⚙️ Funcionalidades</h4>
-                <ul>
-                  <li>Motor de scoring automático basado en datos del BCRA</li>
-                  <li>Indicadores visuales de nivel de riesgo (semáforo)</li>
-                  <li>Reportes exportables en PDF y Excel</li>
-                  <li>Dashboard de métricas y estadísticas</li>
-                </ul>
-                <h4>🔔 Sistema de Alertas Tempranas</h4>
-                <ul>
-                  <li>Watchlist de CUITs bajo seguimiento con estados visuales</li>
-                  <li>Actualización automática diaria de situación crediticia</li>
-                  <li>Notificaciones al detectar cambios de situación (ej: pasó de situación 1 a 3)</li>
-                  <li>Feed cronológico de novedades y eventos relevantes</li>
-                </ul>
-                <h4>⭐ Score de Confianza Interno</h4>
-                <ul>
-                  <li>Scoring manual complementario al scoring del BCRA</li>
-                  <li>Ajustable por el usuario según su criterio profesional</li>
-                  <li>Permite agregar notas y justificación al score asignado</li>
-                  <li>Histórico de cambios en el score de confianza por CUIT</li>
-                </ul>
-              </div>
-            </div>
-            <div class="future-section">
-              <h3>💬 Bot WhatsApp - Memorandum</h3>
-              <p>Sistema de organización de ideas y notas vía WhatsApp con comandos simples. Próximamente disponible.</p>
-            </div>
-          </div>
-        </div>
-      </div>
+  <!-- OBJETIVOS -->
+  <div id="d-objetivos" class="desk-page">
+    <div class="desk-page-header"><h1>Objetivos del Proyecto</h1></div>
+    <div class="d-cards d-cards-3">
+      <div class="d-card objective"><div class="d-card-icon"><i class="fas fa-search"></i></div><h3>Consulta de CUITs</h3><p>Consultas tributarias individuales y masivas con datos de ARCA (ex AFIP)</p></div>
+      <div class="d-card objective"><div class="d-card-icon"><i class="fas fa-shield-alt"></i></div><h3>Riesgo Crediticio</h3><p>Evaluacion de riesgo con BCRA, alertas tempranas y score de confianza</p></div>
+      <div class="d-card objective"><div class="d-card-icon"><i class="fas fa-gas-pump"></i></div><h3>Precios Combustibles</h3><p>Obtencion automatizada de precios desde Axion y Shell en tiempo real</p></div>
+      <div class="d-card objective"><div class="d-card-icon"><i class="fas fa-lock"></i></div><h3>Seguridad</h3><p>Autenticacion segura con usuarios, sesiones y control de acceso</p></div>
+      <div class="d-card objective"><div class="d-card-icon"><i class="fas fa-mobile-alt"></i></div><h3>Mobile First</h3><p>Diseño responsive para smartphones, tablets y desktop</p></div>
+      <div class="d-card objective"><div class="d-card-icon"><i class="fas fa-database"></i></div><h3>Base de Datos</h3><p>Almacenamiento centralizado de consultas, precios e historiales</p></div>
     </div>
   </div>
 
-  <footer class="footer">
-    <div class="footer-brand">GAMMA AUTOMATIZACIONES</div>
-    <div class="footer-divider"></div>
-    <div class="footer-sub">Sistema desarrollado para Grupo SORBONA BERRIA</div>
-    <div class="footer-sub">Plan de Accion v1.0 &mdash; 2025</div>
-  </footer>
+  <!-- CARACTERISTICAS -->
+  <div id="d-caracteristicas" class="desk-page">
+    <div class="desk-page-header"><h1>Caracteristicas Implementadas</h1></div>
+    <div class="d-cards d-cards-3">
+      <div class="d-card feature"><div class="d-feature-header"><i class="fas fa-search"></i> Buscador CUIT</div><ul><li>Busqueda individual y masiva</li><li>Datos completos de ARCA</li><li>Filtros por provincia y estado</li><li>Tarjetas con info detallada</li></ul></div>
+      <div class="d-card feature"><div class="d-feature-header"><i class="fas fa-chart-line"></i> Riesgo Crediticio</div><ul><li>Datos BCRA integrados</li><li>Deudas y cheques rechazados</li><li>Cache inteligente</li><li>Semaforo visual de riesgo</li></ul></div>
+      <div class="d-card feature"><div class="d-feature-header"><i class="fas fa-bell"></i> Alertas Tempranas</div><ul><li>Watchlist de CUITs</li><li>Deteccion de cambios</li><li>Feed cronologico</li><li>Actualizacion semanal</li></ul></div>
+      <div class="d-card feature"><div class="d-feature-header"><i class="fas fa-star"></i> Score de Confianza</div><ul><li>Escala 1-5 con colores</li><li>Notas por CUIT</li><li>Historial de cambios</li><li>Complementario a BCRA</li></ul></div>
+      <div class="d-card feature"><div class="d-feature-header"><i class="fas fa-columns"></i> Comparador</div><ul><li>Comparacion lado a lado</li><li>Actividades e impuestos</li><li>Diferencias destacadas</li><li>Exportacion</li></ul></div>
+      <div class="d-card feature"><div class="d-feature-header"><i class="fas fa-file-export"></i> Exportacion</div><ul><li>PDF profesional</li><li>Excel (.xlsx)</li><li>CSV</li><li>Historial y favoritos</li></ul></div>
+      <div class="d-card feature"><div class="d-feature-header"><i class="fas fa-chart-pie"></i> Estadisticas</div><ul><li>Dashboard consultas</li><li>Metricas por periodo</li><li>Graficos de actividad</li><li>Consultas frecuentes</li></ul></div>
+      <div class="d-card feature"><div class="d-feature-header"><i class="fas fa-palette"></i> Diseno y UX</div><ul><li>Paleta negro-dorado-blanco</li><li>Animaciones suaves</li><li>Responsive Mobile First</li><li>Branding SHELL y AXION</li></ul></div>
+      <div class="d-card feature"><div class="d-feature-header"><i class="fas fa-cloud"></i> Datos en tiempo real</div><ul><li>ARCA datos frescos + cache</li><li>BCRA indicador frescura</li><li>Aviso con fecha en cache</li><li>Reconsulta automatica</li></ul></div>
+    </div>
+  </div>
 
-  <script src="plan_accion.js"></script>
+  <!-- DESPLIEGUE -->
+  <div id="d-despliegue" class="desk-page">
+    <div class="desk-page-header"><h1>Despliegue y Entrega</h1></div>
+    <div class="d-cards d-cards-2">
+      <div class="d-card"><div class="d-card-header"><i class="fas fa-code-branch"></i> Repositorio</div><div class="d-card-body">
+        <div class="d-info-row"><span>Plataforma</span><span>GitHub</span></div>
+        <div class="d-info-row"><span>Repositorio</span><span>PMGSB</span></div>
+        <div class="d-info-row"><span>Branch</span><span>main</span></div>
+        <div class="d-info-row"><span>Acceso</span><span>Completo al cliente</span></div>
+      </div></div>
+      <div class="d-card"><div class="d-card-header"><i class="fas fa-clipboard-check"></i> Politica de Entrega</div><div class="d-card-body">
+        <div class="d-policy">
+          <div class="d-policy-item"><i class="fas fa-check-square"></i><div><strong>Entrega Completa</strong><p>Todos los documentos y el proyecto se entregan una vez finalizados.</p></div></div>
+          <div class="d-policy-item"><i class="fas fa-check-square"></i><div><strong>No Entregas Parciales</strong><p>La entrega es unica y total al finalizar el desarrollo.</p></div></div>
+          <div class="d-policy-item"><i class="fas fa-check-square"></i><div><strong>Condicion</strong><p>La entrega final se realiza cuando el sistema esta 100% operativo.</p></div></div>
+        </div>
+      </div></div>
+    </div>
+  </div>
+
+</main>
+
+
+<!-- ================================================================
+     MOBILE LAYOUT (visible <= 768px)
+     ================================================================ -->
+
+<header class="mob-header">
+  <div class="mob-header-brand">GSB <span>Plan de Accion</span></div>
+  <span id="mob-hora" class="mob-time"></span>
+</header>
+
+<div class="mob-stories">
+  <div class="mob-story active" data-mob="mob-inicio"><div class="mob-story-ring gold"><div class="mob-story-avatar"><i class="fas fa-home"></i></div></div><span>Inicio</span></div>
+  <div class="mob-story" data-mob="mob-fase1"><div class="mob-story-ring green"><div class="mob-story-avatar"><i class="fas fa-search"></i></div></div><span>Fase 1</span></div>
+  <div class="mob-story" data-mob="mob-fase2"><div class="mob-story-ring green"><div class="mob-story-avatar"><i class="fas fa-shield-alt"></i></div></div><span>Fase 2</span></div>
+  <div class="mob-story" data-mob="mob-fase3a"><div class="mob-story-ring yellow"><div class="mob-story-avatar"><i class="fas fa-gas-pump"></i></div></div><span>Axion</span></div>
+  <div class="mob-story" data-mob="mob-fase3b"><div class="mob-story-ring dim"><div class="mob-story-avatar"><i class="fas fa-gas-pump"></i></div></div><span>Shell</span></div>
+  <div class="mob-story" data-mob="mob-crono"><div class="mob-story-ring gold"><div class="mob-story-avatar"><i class="fas fa-calendar"></i></div></div><span>Crono</span></div>
+  <div class="mob-story" data-mob="mob-info"><div class="mob-story-ring gold"><div class="mob-story-avatar"><i class="fas fa-info"></i></div></div><span>Info</span></div>
+</div>
+
+<div class="mob-pages">
+
+  <!-- INICIO -->
+  <div id="mob-inicio" class="mob-page active">
+    <div class="mob-profile"><div class="mob-profile-avatar">GSB</div><div><div class="mob-profile-name">Grupo SORBONA BERRIA</div><div class="mob-profile-sub">Sistema de Gestion Integral</div></div></div>
+    <div class="mob-stats">
+      <div class="mob-stat"><div class="mob-stat-num green" id="mob-stat-completadas">-</div><div class="mob-stat-label">Completadas</div></div>
+      <div class="mob-stat-divider"></div>
+      <div class="mob-stat"><div class="mob-stat-num yellow" id="mob-stat-desarrollo">-</div><div class="mob-stat-label">En Desarrollo</div></div>
+      <div class="mob-stat-divider"></div>
+      <div class="mob-stat"><div class="mob-stat-num" id="mob-stat-tareas">-</div><div class="mob-stat-label">Tareas</div></div>
+    </div>
+    <div class="mob-post"><div class="mob-post-header"><div class="mob-post-avatar"><i class="fas fa-chart-line"></i></div><div><div class="mob-post-user">Progreso General</div><div class="mob-post-meta" id="mob-fecha"></div></div></div><div class="mob-post-body">
+      <div class="mob-progress"><div class="mob-progress-bar"><div class="mob-progress-fill" id="mob-progress-fill"></div></div><span class="mob-progress-pct" id="mob-progress-pct">0%</span></div>
+      <div class="mob-progress-legend" id="mob-progress-legend"></div>
+    </div></div>
+    <div class="mob-post"><div class="mob-post-header"><div class="mob-post-avatar yellow"><i class="fas fa-cog"></i></div><div><div class="mob-post-user">Fase Actual</div><div class="mob-post-meta">En desarrollo ahora</div></div></div><div class="mob-post-body">
+      <div class="mob-fase-actual" id="mob-fase-actual">Cargando...</div>
+      <div class="mob-fase-actual-sub" id="mob-fase-actual-period"></div>
+    </div></div>
+    <div class="mob-post"><div class="mob-post-header"><div class="mob-post-avatar green"><i class="fas fa-dollar-sign"></i></div><div><div class="mob-post-user">Costos del Proyecto</div><div class="mob-post-meta">Presupuesto acordado</div></div></div><div class="mob-post-body">
+      <div class="mob-cost-row"><span>Desarrollo inicial</span><span class="mob-cost-val">$ 500.000</span></div>
+      <div class="mob-cost-row"><span>Repositorio GitHub</span><span class="mob-cost-val free">$ 0 USD</span></div>
+      <div class="mob-cost-row"><span>Abono mensual soporte</span><span class="mob-cost-val">$ 630.000</span></div>
+      <div class="mob-cost-note">Incluye soporte y desarrollo de nuevas integraciones</div>
+    </div></div>
+    <div class="mob-post"><div class="mob-post-header"><div class="mob-post-avatar purple"><i class="fas fa-puzzle-piece"></i></div><div><div class="mob-post-user">Caracteristicas</div><div class="mob-post-meta">Desliza para ver</div></div></div><div class="mob-post-body">
+      <div class="mob-carousel"><div class="mob-carousel-track">
+        <div class="mob-carousel-card"><div class="mob-carousel-icon"><i class="fas fa-search"></i></div><h4>Buscador CUIT</h4><p>Busqueda individual y masiva con datos de ARCA</p></div>
+        <div class="mob-carousel-card"><div class="mob-carousel-icon"><i class="fas fa-chart-line"></i></div><h4>Riesgo Crediticio</h4><p>Datos BCRA integrados, cache inteligente</p></div>
+        <div class="mob-carousel-card"><div class="mob-carousel-icon"><i class="fas fa-bell"></i></div><h4>Alertas Tempranas</h4><p>Watchlist, deteccion de cambios, feed</p></div>
+        <div class="mob-carousel-card"><div class="mob-carousel-icon"><i class="fas fa-star"></i></div><h4>Score de Confianza</h4><p>Escala 1-5, notas, historial</p></div>
+        <div class="mob-carousel-card"><div class="mob-carousel-icon"><i class="fas fa-gas-pump"></i></div><h4>Precios Combustibles</h4><p>Axion y Shell, actualizacion diaria 7 AM</p></div>
+      </div></div>
+      <div class="mob-carousel-dots" id="mob-carousel-dots"></div>
+    </div></div>
+  </div>
+
+  <!-- FASE PAGES (generated by JS) -->
+  <div id="mob-fase1" class="mob-page"></div>
+  <div id="mob-fase2" class="mob-page"></div>
+  <div id="mob-fase3a" class="mob-page"></div>
+  <div id="mob-fase3b" class="mob-page"></div>
+
+  <!-- CRONO -->
+  <div id="mob-crono" class="mob-page">
+    <div class="mob-page-title">Cronograma</div>
+    <div class="mob-crono-tabs">
+      <button class="mob-crono-tab active" data-crono="mob-crono-axion">Axion</button>
+      <button class="mob-crono-tab" data-crono="mob-crono-shell">Shell</button>
+      <button class="mob-crono-tab" data-crono="mob-crono-historico">Historico</button>
+    </div>
+    <div id="mob-crono-axion" class="mob-crono-panel active"></div>
+    <div id="mob-crono-shell" class="mob-crono-panel"></div>
+    <div id="mob-crono-historico" class="mob-crono-panel"></div>
+  </div>
+
+  <!-- INFO -->
+  <div id="mob-info" class="mob-page">
+    <div class="mob-page-title">Informacion</div>
+    <div class="mob-post"><div class="mob-post-header"><div class="mob-post-avatar"><i class="fas fa-building"></i></div><div><div class="mob-post-user">Datos del Proyecto</div><div class="mob-post-meta">Info general</div></div></div><div class="mob-post-body">
+      <div class="mob-info-row"><span>Nombre</span><span>Sistema GSB</span></div>
+      <div class="mob-info-row"><span>Cliente</span><span>Grupo SORBONA BERRIA</span></div>
+      <div class="mob-info-row"><span>Version</span><span>3.0</span></div>
+      <div class="mob-info-row last"><span>Estado</span><span class="mob-badge yellow">En desarrollo</span></div>
+    </div></div>
+    <div class="mob-post"><div class="mob-post-header"><div class="mob-post-avatar green"><i class="fas fa-exchange-alt"></i></div><div><div class="mob-post-user">Equivalencias de Precios</div><div class="mob-post-meta">Axion vs Shell</div></div></div><div class="mob-post-body">
+      <div class="mob-table-scroll"><table class="mob-table"><thead><tr><th>Concepto</th><th>Axion</th><th>Shell</th></tr></thead><tbody>
+        <tr><td>Costo base</td><td>CB</td><td>P. Basico</td></tr>
+        <tr><td>Impuesto 1</td><td>ITC</td><td>ICL</td></tr>
+        <tr><td>Impuesto 2</td><td>CO2</td><td>IDC</td></tr>
+        <tr><td>Precio final</td><td>P. Surtidor</td><td>P. Sugerido</td></tr>
+        <tr><td>Sin flete</td><td>FOB</td><td>FOB</td></tr>
+        <tr><td>Con flete</td><td>CIF</td><td>CIF</td></tr>
+      </tbody></table></div>
+    </div></div>
+    <div class="mob-post"><div class="mob-post-header"><div class="mob-post-avatar"><i class="fas fa-clipboard-check"></i></div><div><div class="mob-post-user">Politica de Entrega</div><div class="mob-post-meta">Condiciones</div></div></div><div class="mob-post-body">
+      <div class="mob-objective"><i class="fas fa-check-square"></i> Entrega completa, no parcial</div>
+      <div class="mob-objective"><i class="fas fa-check-square"></i> Entrega unica al finalizar</div>
+      <div class="mob-objective"><i class="fas fa-check-square"></i> Sistema 100% operativo antes de entregar</div>
+    </div></div>
+    <div class="mob-footer"><div class="mob-footer-brand">GAMMA</div><div class="mob-footer-sub">Automatizaciones</div><div class="mob-footer-line"></div><div class="mob-footer-copy">Plan de Accion v3.0 — 2026</div></div>
+  </div>
+
+</div>
+
+<nav class="mob-bottom-nav">
+  <button class="mob-nav-btn active" data-mob="mob-inicio"><i class="fas fa-home"></i></button>
+  <button class="mob-nav-btn" data-mob="mob-fase3a" id="mob-nav-fases"><i class="fas fa-layer-group"></i></button>
+  <button class="mob-nav-btn" data-mob="mob-crono"><i class="fas fa-calendar-alt"></i></button>
+  <button class="mob-nav-btn" data-mob="mob-info"><i class="fas fa-info-circle"></i></button>
+</nav>
+
+<script src="plan_accion.js"></script>
 </body>
 </html>

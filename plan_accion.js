@@ -1,365 +1,330 @@
-// Plan de Acción - Sistema CUIT | GSB
-// Optimized JavaScript
-
+// Plan de Accion GSB - Desktop + Mobile (Instagram)
 (function() {
   'use strict';
 
-  // Cache DOM elements
-  const DOM = {
-    tabButtons: null,
-    tabPanes: null,
-    fechaActual: null,
-    horaActual: null,
-    faseActual: null,
-    cronogramaTitulo: null,
-    cronogramaContent: null
-  };
+  var STORAGE_KEY = 'gsb_plan_tasks';
 
-  // Cronograma data cache
-  let cronogramaData = null;
+  var FASES = [
+    { id: 'fase1', title: 'Fase 1: Sistema de Consulta CUIT', short: 'Fase 1 — CUIT', period: '28 Enero - 13 Febrero 2026', status: 'completed', tasks: [
+      'Motor de busqueda de CUIT con API ARCA (ex AFIP)', 'Base de datos centralizada para almacenamiento', 'Consulta individual y masiva de CUITs',
+      'Sistema de autenticacion con usuarios y sesiones', 'Historial de busquedas y sistema de favoritos', 'Comparador de CUITs lado a lado',
+      'Exportacion PDF, Excel y CSV', 'Estadisticas de uso con graficos', 'Diseno responsive Mobile First'
+    ]},
+    { id: 'fase2', title: 'Fase 2: Riesgo Crediticio', short: 'Fase 2 — BCRA', period: '13 Febrero - 13 Marzo 2026', status: 'completed', tasks: [
+      'Integracion con APIs del BCRA (Central de Deudores)', 'Consulta de situacion crediticia y cheques rechazados', 'Cache inteligente con fallback cuando BCRA no responde',
+      'Panel de riesgo integrado en resultados de busqueda', 'Alertas Tempranas (watchlist con deteccion de cambios)', 'Actualizacion automatica semanal',
+      'Score de Confianza interno (escala 1-5) con historial', 'Feed cronologico de alertas y novedades', 'Indicadores visuales datos frescos vs cache'
+    ]},
+    { id: 'fase3a', title: 'Fase 3A: Precios Energy Center (Axion)', short: 'Axion', period: '28 Marzo - 25 Abril 2026', status: 'in-progress', tasks: [
+      'Analisis del flujo OAuth2 de Energy Center', 'Desarrollo del modulo de login automatico', 'Navegacion programatica dentro de la plataforma',
+      'Extraccion de Costo Basico (CB) por estacion', 'Extraccion de ITC (impuesto interno)', 'Extraccion de CO2 (impuesto interno)',
+      'Extraccion de Precio Surtidor (precio sugerido)', 'Extraccion de precio FOB por estacion', 'Simulacion automatica de pedido para obtener CIF',
+      'Soporte multi-estacion con datos independientes', 'Manejo de estaciones con solo FOB o solo CIF', 'Base de datos para precios con historico',
+      'Panel de precios Axion en sistema Berria', 'Tarea programada diaria a las 7:00 AM', 'Testing integral con todas las estaciones', 'Deploy a produccion del modulo Axion'
+    ]},
+    { id: 'fase3b', title: 'Fase 3B: Precios CSOnline (Shell / Raizen)', short: 'Shell', period: '27 Abril - 27 Mayo 2026', status: 'pending', tasks: [
+      'Analisis del flujo OAuth2 de CSOnline (Raizen)', 'Desarrollo de login automatico CSOnline', 'Navegacion programatica en CSOnline',
+      'Extraccion de FOB y CIF por estacion', 'Extraccion de IDC (CO2) e ICL (ITC)', 'Extraccion de Precio Sugerido (surtidor)',
+      'Soporte para las 4 estaciones de servicio', 'Extraccion de datos cuenta AGRO Gral Pico', 'Extraccion de datos cuenta AGRO Pehuajo',
+      'Extraccion de datos cuenta AGRO Pihue', 'Consolidacion de datos de 7 cuentas', 'Base de datos para precios Shell con historico',
+      'Panel de precios Shell en sistema Berria', 'Tabla comparativa Axion vs Shell', 'Automatizacion diaria 7:00 AM (Shell + Axion)',
+      'Testing integral con todas las cuentas', 'Deploy a produccion y entrega Fase 3'
+    ]}
+  ];
 
-  // Month name to number mapping
-  const MESES = {
-    'enero': 1, 'febrero': 2, 'marzo': 3, 'abril': 4,
-    'mayo': 5, 'junio': 6, 'julio': 7, 'agosto': 8,
-    'septiembre': 9, 'octubre': 10, 'noviembre': 11, 'diciembre': 12
-  };
-
-  /**
-   * Initialize DOM cache
-   */
-  function initDOM() {
-    DOM.tabButtons = document.querySelectorAll('.tab-button');
-    DOM.tabPanes = document.querySelectorAll('.tab-pane');
-    DOM.fechaActual = document.getElementById('fecha-actual');
-    DOM.horaActual = document.getElementById('hora-actual');
-    DOM.faseActual = document.getElementById('fase-actual');
-    DOM.cronogramaTitulo = document.getElementById('cronograma-titulo');
-    DOM.cronogramaContent = document.getElementById('cronograma-content');
+  // ============ STATE ============
+  function getState() { try { return JSON.parse(localStorage.getItem(STORAGE_KEY)) || {}; } catch(e) { return {}; } }
+  function saveState(s) { localStorage.setItem(STORAGE_KEY, JSON.stringify(s)); }
+  function isTaskDone(faseId, idx) {
+    var f = FASES.find(function(x) { return x.id === faseId; });
+    if (f && f.status === 'completed') return true;
+    return !!getState()[faseId + '_' + idx];
   }
+  function toggleTask(faseId, idx) {
+    var f = FASES.find(function(x) { return x.id === faseId; });
+    if (f && f.status === 'completed') return;
+    var s = getState(); s[faseId + '_' + idx] = !s[faseId + '_' + idx]; saveState(s);
+    renderFase(faseId); updateProgress();
+  }
+  window.__toggle = toggleTask;
 
-  /**
-   * Setup tab navigation
-   */
-  function setupTabs() {
-    if (!DOM.tabButtons.length || !DOM.tabPanes.length) return;
+  // ============ RENDER FASE (both desktop + mobile) ============
+  function renderFase(faseId) {
+    var fase = FASES.find(function(x) { return x.id === faseId; });
+    if (!fase) return;
+    var done = 0;
+    fase.tasks.forEach(function(t, i) { if (isTaskDone(faseId, i)) done++; });
+    var pct = Math.round((done / fase.tasks.length) * 100);
+    var circumference = 2 * Math.PI * 34;
+    var offset = circumference - (pct / 100) * circumference;
+    var statusClass = fase.status === 'completed' ? 'completed' : fase.status === 'in-progress' ? 'in-progress' : 'pending';
+    var statusText = fase.status === 'completed' ? 'Completada' : fase.status === 'in-progress' ? 'En Desarrollo' : 'Pendiente';
+    var ringColor = pct === 100 ? '' : fase.status === 'in-progress' ? 'yellow' : 'gold';
 
-    DOM.tabButtons[0].classList.add('active');
-    DOM.tabPanes[0].classList.add('active');
-
-    DOM.tabButtons.forEach(function(button) {
-      button.addEventListener('click', function() {
-        var tabId = this.getAttribute('data-tab');
-
-        DOM.tabButtons.forEach(function(btn) { btn.classList.remove('active'); });
-        DOM.tabPanes.forEach(function(pane) { pane.classList.remove('active'); });
-
-        this.classList.add('active');
-        var targetPane = document.getElementById(tabId);
-        if (targetPane) {
-          targetPane.classList.add('active');
+    // Build task HTML (reused)
+    function buildTasks(prefix) {
+      var h = '';
+      fase.tasks.forEach(function(task, idx) {
+        var isDone = isTaskDone(faseId, idx);
+        var isLocked = fase.status === 'completed';
+        if (prefix === 'mob') {
+          var cls = isLocked ? 'mob-task-item locked' : isDone ? 'mob-task-item done' : 'mob-task-item';
+          var oc = isLocked ? '' : ' onclick="window.__toggle(\'' + faseId + '\',' + idx + ')"';
+          h += '<div class="' + cls + '"' + oc + '><div class="mob-task-check"><i class="fas fa-check"></i></div><div class="mob-task-text">' + task + '</div></div>';
+        } else {
+          var cls2 = isDone ? 'd-task done' : 'd-task pending';
+          var oc2 = isLocked ? '' : ' onclick="window.__toggle(\'' + faseId + '\',' + idx + ')"';
+          var icon = isDone ? '<i class="fas fa-check-circle"></i>' : '<i class="far fa-circle"></i>';
+          h += '<div class="' + cls2 + '"' + oc2 + '>' + icon + ' ' + task + '</div>';
         }
       });
-    });
-  }
-
-  /**
-   * Setup intersection observer for scroll animations with stagger effect
-   */
-  function setupScrollAnimations() {
-    var staggerIndex = 0;
-
-    var observer = new IntersectionObserver(function(entries) {
-      var visibleEntries = entries.filter(function(e) { return e.isIntersecting; });
-      visibleEntries.forEach(function(entry, i) {
-        var delay = i * 80;
-        setTimeout(function() {
-          entry.target.style.opacity = '1';
-          entry.target.style.transform = 'translateY(0)';
-        }, delay);
-        observer.unobserve(entry.target);
-      });
-    }, { threshold: 0.1, rootMargin: '0px 0px -30px 0px' });
-
-    var sections = document.querySelectorAll(
-      '.info-section, .objective-card, .tech-section, .feature-card, .future-section, .deployment-section, .phase, .stat-card, .progress-section'
-    );
-
-    sections.forEach(function(section) {
-      section.style.opacity = '0';
-      section.style.transform = 'translateY(20px)';
-      section.style.transition = 'opacity 0.6s cubic-bezier(0.4, 0, 0.2, 1), transform 0.6s cubic-bezier(0.4, 0, 0.2, 1)';
-      observer.observe(section);
-    });
-  }
-
-  /**
-   * Load cronograma data from JSON (single fetch, cached)
-   */
-  async function loadCronograma() {
-    try {
-      var response = await fetch('cronograma.json');
-      cronogramaData = await response.json();
-
-      if (DOM.cronogramaTitulo) {
-        DOM.cronogramaTitulo.textContent = cronogramaData.titulo;
-      }
-
-      if (DOM.cronogramaContent) {
-        DOM.cronogramaContent.innerHTML = buildCronogramaHTML(cronogramaData);
-      }
-
-      // Update phase and progress after data is loaded
-      updatePhase();
-      updateProgressStats();
-
-    } catch (error) {
-      console.error('Error loading cronograma:', error);
-      if (DOM.cronogramaTitulo) {
-        DOM.cronogramaTitulo.textContent = 'Error al cargar el cronograma';
-      }
-      if (DOM.cronogramaContent) {
-        DOM.cronogramaContent.innerHTML = '<p>No se pudo cargar la información del cronograma.</p>';
-      }
+      return h;
     }
+
+    // --- Mobile ---
+    var mobEl = document.getElementById('mob-' + faseId);
+    if (mobEl) {
+      var mh = '<div class="mob-fase-header">';
+      mh += '<div class="mob-fase-ring"><svg width="80" height="80"><circle class="ring-bg" cx="40" cy="40" r="34"/><circle class="ring-fill ' + ringColor + '" cx="40" cy="40" r="34" stroke-dasharray="' + circumference + '" stroke-dashoffset="' + offset + '"/></svg><div class="mob-fase-ring-pct">' + pct + '%</div></div>';
+      mh += '<div class="mob-fase-title">' + fase.title + '</div>';
+      mh += '<div class="mob-fase-period">' + fase.period + '</div>';
+      mh += '<div class="mob-fase-status ' + statusClass + '">' + statusText + ' — ' + done + '/' + fase.tasks.length + '</div></div>';
+      mh += '<div class="mob-task-card"><div class="mob-task-card-header">Tareas</div>' + buildTasks('mob') + '</div>';
+      mobEl.innerHTML = mh;
+    }
+
+    // --- Desktop timeline item ---
+    // We rebuild the whole timeline for simplicity
   }
 
-  /**
-   * Build cronograma HTML from data
-   */
-  function buildCronogramaHTML(data) {
+  function renderDesktopTimeline() {
+    var container = document.getElementById('d-fases-timeline');
+    if (!container) return;
     var html = '';
-    data.periodos.forEach(function(periodo) {
-      html += '<div class="periodo-section"><h2 class="periodo-titulo">' +
-        periodo.titulo + '</h2><div class="dias-grid">';
+    FASES.forEach(function(fase) {
+      var done = 0;
+      fase.tasks.forEach(function(t, i) { if (isTaskDone(fase.id, i)) done++; });
+      var pct = Math.round((done / fase.tasks.length) * 100);
+      var markerClass = fase.status === 'completed' ? 'completed' : fase.status === 'in-progress' ? 'in-progress' : 'pending';
+      var markerIcon = fase.status === 'completed' ? '<i class="fas fa-check"></i>' : fase.status === 'in-progress' ? '<i class="fas fa-cog fa-spin"></i>' : '<i class="fas fa-clock"></i>';
+      var badgeClass = fase.status === 'completed' ? 'd-badge-completed' : fase.status === 'in-progress' ? 'd-badge-progress' : 'd-badge-pending';
+      var badgeText = fase.status === 'completed' ? 'Completada' : fase.status === 'in-progress' ? 'En Desarrollo' : 'Pendiente';
 
-      periodo.dias.forEach(function(dia) {
-        var actividades = dia.actividades.map(function(a) {
-          return '<li>' + a + '</li>';
-        }).join('');
-
-        html += '<div class="dia-calendario"><h3>' + dia.fecha + ': ' +
-          dia.titulo + '</h3><div class="dia-actividades"><ul class="cronograma-list">' +
-          actividades + '</ul></div></div>';
+      html += '<div class="d-timeline-item"><div class="d-timeline-marker ' + markerClass + '">' + markerIcon + '</div><div class="d-timeline-content">';
+      html += '<div class="d-timeline-header"><h3>' + fase.title + '</h3><span class="d-badge ' + badgeClass + '">' + badgeText + '</span></div>';
+      html += '<div class="d-timeline-period">' + fase.period + '</div>';
+      html += '<div class="d-phase-progress"><div class="d-phase-progress-bar"><div class="d-phase-progress-fill" style="width:' + pct + '%;"></div></div><span class="d-phase-progress-text">' + done + '/' + fase.tasks.length + '</span></div>';
+      html += '<div class="d-timeline-tasks">';
+      fase.tasks.forEach(function(task, idx) {
+        var isDone = isTaskDone(fase.id, idx);
+        var isLocked = fase.status === 'completed';
+        var cls = isDone ? 'd-task done' : 'd-task pending';
+        var oc = isLocked ? '' : ' onclick="window.__toggle(\'' + fase.id + '\',' + idx + ')"';
+        var icon = isDone ? '<i class="fas fa-check-circle"></i>' : '<i class="far fa-circle"></i>';
+        html += '<div class="' + cls + '"' + oc + '>' + icon + ' ' + task + '</div>';
       });
-
-      html += '</div></div>';
+      html += '</div></div></div>';
     });
-    return html;
+    container.innerHTML = html;
   }
 
-  /**
-   * Update current date and time display
-   */
+  function renderAllFases() {
+    FASES.forEach(function(f) { renderFase(f.id); });
+    renderDesktopTimeline();
+  }
+
+  // ============ PROGRESS (updates both desktop + mobile) ============
+  function updateProgress() {
+    var total = 0, done = 0, completedF = 0, inProgressF = 0, currentFase = null;
+    FASES.forEach(function(f) {
+      var d = 0;
+      f.tasks.forEach(function(t, i) { total++; if (isTaskDone(f.id, i)) { done++; d++; } });
+      if (d === f.tasks.length) completedF++;
+      else if (d > 0 || f.status === 'in-progress') { inProgressF++; if (!currentFase) currentFase = f; }
+      else if (!currentFase) currentFase = f;
+    });
+    var pct = total > 0 ? Math.round((done / total) * 100) : 0;
+
+    function set(id, val) { var e = document.getElementById(id); if (e) e.textContent = val; }
+    function setW(id, val) { var e = document.getElementById(id); if (e) e.style.width = val; }
+
+    // Desktop
+    set('d-stat-completadas', completedF);
+    set('d-stat-desarrollo', inProgressF || (FASES.length - completedF));
+    set('d-stat-tareas', done + '/' + total);
+    if (currentFase) set('d-fase-actual', currentFase.title);
+    set('d-progress-fill', pct + '%'); setW('d-progress-fill', pct + '%');
+
+    // Mobile
+    set('mob-stat-completadas', completedF);
+    set('mob-stat-desarrollo', inProgressF || (FASES.length - completedF));
+    set('mob-stat-tareas', done + '/' + total);
+    if (currentFase) { set('mob-fase-actual', currentFase.title); set('mob-fase-actual-period', currentFase.period); }
+    set('mob-progress-pct', pct + '%');
+    var mobFill = document.getElementById('mob-progress-fill');
+    if (mobFill) mobFill.style.width = pct + '%';
+
+    // Legends
+    function buildLegend(prefix) {
+      var h = '';
+      FASES.forEach(function(f) {
+        var d = 0; f.tasks.forEach(function(t, i) { if (isTaskDone(f.id, i)) d++; });
+        var allDone = d === f.tasks.length;
+        var dotClass = allDone ? (prefix === 'mob' ? 'green' : 'completed') : (d > 0 || f.status === 'in-progress') ? (prefix === 'mob' ? 'yellow' : 'in-progress') : (prefix === 'mob' ? 'dim' : 'pending');
+        var itemClass = prefix === 'mob' ? 'mob-legend-item' : 'd-legend-item';
+        var dotEl = prefix === 'mob' ? 'mob-legend-dot' : 'd-legend-dot';
+        h += '<span class="' + itemClass + '"><span class="' + dotEl + ' ' + dotClass + '"></span>' + f.short + '</span>';
+      });
+      return h;
+    }
+
+    var dl = document.getElementById('d-progress-legend');
+    if (dl) dl.innerHTML = buildLegend('desk');
+    var ml = document.getElementById('mob-progress-legend');
+    if (ml) ml.innerHTML = buildLegend('mob');
+
+    renderDesktopTimeline();
+  }
+
+  // ============ TABS ============
+  function setupTabs() {
+    // Desktop sidebar
+    document.querySelectorAll('[data-desk]').forEach(function(btn) {
+      btn.addEventListener('click', function() {
+        var id = this.getAttribute('data-desk');
+        document.querySelectorAll('.desk-page').forEach(function(p) { p.classList.remove('active'); });
+        document.querySelectorAll('[data-desk]').forEach(function(b) { b.classList.remove('active'); });
+        var target = document.getElementById(id);
+        if (target) target.classList.add('active');
+        this.classList.add('active');
+      });
+    });
+
+    // Mobile stories + bottom nav
+    document.querySelectorAll('[data-mob]').forEach(function(el) {
+      el.addEventListener('click', function() {
+        var id = this.getAttribute('data-mob');
+        document.querySelectorAll('.mob-page').forEach(function(p) { p.classList.remove('active'); });
+        document.querySelectorAll('.mob-story').forEach(function(s) { s.classList.remove('active'); });
+        document.querySelectorAll('.mob-nav-btn').forEach(function(b) { b.classList.remove('active'); });
+        var target = document.getElementById(id);
+        if (target) target.classList.add('active');
+        // Activate story
+        var story = document.querySelector('.mob-story[data-mob="' + id + '"]');
+        if (story) { story.classList.add('active'); story.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' }); }
+        // Activate bottom nav
+        var nav = document.querySelector('.mob-nav-btn[data-mob="' + id + '"]');
+        if (nav) nav.classList.add('active');
+        // If it's a fase, activate the fases button
+        if (id.indexOf('mob-fase') === 0) {
+          var navF = document.getElementById('mob-nav-fases');
+          if (navF) navF.classList.add('active');
+        }
+        window.scrollTo(0, 0);
+      });
+    });
+  }
+
+  // ============ DATETIME ============
   function updateDateTime() {
     var now = new Date();
+    var fechaStr = now.toLocaleDateString('es-AR', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' });
+    var horaStr = String(now.getHours()).padStart(2, '0') + ':' + String(now.getMinutes()).padStart(2, '0');
+    var horaFull = horaStr + ':' + String(now.getSeconds()).padStart(2, '0');
 
-    if (DOM.fechaActual) {
-      DOM.fechaActual.textContent = now.toLocaleDateString('es-ES', {
-        weekday: 'long', year: 'numeric', month: 'long', day: 'numeric'
-      });
-    }
-
-    if (DOM.horaActual) {
-      var h = String(now.getHours()).padStart(2, '0');
-      var m = String(now.getMinutes()).padStart(2, '0');
-      var s = String(now.getSeconds()).padStart(2, '0');
-      DOM.horaActual.textContent = h + ':' + m + ':' + s;
-    }
+    var df = document.getElementById('d-fecha'); if (df) df.textContent = fechaStr;
+    var dh = document.getElementById('d-hora'); if (dh) dh.textContent = horaFull;
+    var mf = document.getElementById('mob-fecha'); if (mf) mf.textContent = fechaStr;
+    var mh = document.getElementById('mob-hora'); if (mh) mh.textContent = horaStr;
   }
 
-  /**
-   * Update current phase based on cronograma data
-   */
-  function updatePhase() {
-    if (!DOM.faseActual || !cronogramaData) return;
+  // ============ CRONOGRAMA ============
+  async function loadCronograma() {
+    try {
+      var res = await fetch('cronograma.json');
+      var data = await res.json();
 
-    var now = new Date();
-    var day = now.getDate();
-    var month = now.getMonth() + 1;
-    var diaActual = 'Proyecto en curso';
-
-    for (var i = 0; i < cronogramaData.periodos.length; i++) {
-      var periodo = cronogramaData.periodos[i];
-      for (var j = 0; j < periodo.dias.length; j++) {
-        var dia = periodo.dias[j];
-        var parts = dia.fecha.split(' ');
-        var diaNum = parseInt(parts[0], 10);
-        var mesStr = (parts[1] || '').toLowerCase();
-        var mesNum = MESES[mesStr];
-
-        if (diaNum === day && mesNum === month) {
-          diaActual = dia.titulo;
-          DOM.faseActual.textContent = diaActual;
-          return;
-        }
-      }
-    }
-
-    // Fallback phases
-    if (month === 1) {
-      if (day >= 28 && day <= 31) diaActual = 'Fase 1: Sistema CUIT';
-    } else if (month === 2) {
-      if (day >= 1 && day <= 13) diaActual = 'Fase 1: Cierre Sistema CUIT';
-      else if (day >= 14 && day <= 28) diaActual = 'Fase 2: Riesgo Crediticio + APIs BCRA';
-    } else if (month === 3) {
-      if (day <= 13) diaActual = 'Fase 2: Riesgo Crediticio (Entrega 13 Marzo)';
-      else diaActual = 'Proyecto Completado - En Mantenimiento';
-    } else {
-      diaActual = 'Proyecto Completado - En Mantenimiento';
-    }
-
-    DOM.faseActual.textContent = diaActual;
-  }
-
-  /**
-   * Parse a cronograma date string and return a Date object (year 2026)
-   * Handles: "28 Enero", "9-13 Febrero", "23 Febrero - 12 Marzo"
-   * Returns { start: Date, end: Date }
-   */
-  function parseCronogramaDate(fechaStr) {
-    var year = 2026;
-
-    // Range with different months: "23 Febrero - 12 Marzo"
-    var rangeMatch = fechaStr.match(/(\d+)\s+(\w+)\s*-\s*(\d+)\s+(\w+)/);
-    if (rangeMatch) {
-      var startMonth = MESES[rangeMatch[2].toLowerCase()];
-      var endMonth = MESES[rangeMatch[4].toLowerCase()];
-      if (startMonth && endMonth) {
-        return {
-          start: new Date(year, startMonth - 1, parseInt(rangeMatch[1])),
-          end: new Date(year, endMonth - 1, parseInt(rangeMatch[3]))
-        };
-      }
-    }
-
-    // Range same month: "9-13 Febrero"
-    var sameMonthRange = fechaStr.match(/(\d+)-(\d+)\s+(\w+)/);
-    if (sameMonthRange) {
-      var month = MESES[sameMonthRange[3].toLowerCase()];
-      if (month) {
-        return {
-          start: new Date(year, month - 1, parseInt(sameMonthRange[1])),
-          end: new Date(year, month - 1, parseInt(sameMonthRange[2]))
-        };
-      }
-    }
-
-    // Single date: "28 Enero"
-    var singleMatch = fechaStr.match(/(\d+)\s+(\w+)/);
-    if (singleMatch) {
-      var m = MESES[singleMatch[2].toLowerCase()];
-      if (m) {
-        var d = new Date(year, m - 1, parseInt(singleMatch[1]));
-        return { start: d, end: d };
-      }
-    }
-
-    return null;
-  }
-
-  /**
-   * Calculate and update progress stats based on cronograma dates
-   */
-  function updateProgressStats() {
-    if (!cronogramaData) return;
-
-    var now = new Date();
-    now.setHours(0, 0, 0, 0);
-
-    var totalDias = 0;
-    var diasCompletados = 0;
-    var diasEnCurso = 0;
-    var diasPendientes = 0;
-    var totalProyectos = cronogramaData.periodos.length;
-    var proyectosCompletados = 0;
-    var proyectosEnCurso = 0;
-
-    cronogramaData.periodos.forEach(function(periodo, pIdx) {
-      var periodoCompleto = true;
-      var periodoEnCurso = false;
-
-      periodo.dias.forEach(function(dia) {
-        totalDias++;
-        var parsed = parseCronogramaDate(dia.fecha);
-        if (!parsed) { diasPendientes++; return; }
-
-        if (now > parsed.end) {
-          diasCompletados++;
-        } else if (now >= parsed.start && now <= parsed.end) {
-          diasEnCurso++;
-          periodoEnCurso = true;
-          periodoCompleto = false;
-        } else {
-          diasPendientes++;
-          periodoCompleto = false;
-        }
-      });
-
-      if (periodoCompleto && periodo.dias.length > 0) proyectosCompletados++;
-      else if (periodoEnCurso) proyectosEnCurso++;
-    });
-
-    var percent = totalDias > 0 ? Math.round((diasCompletados / totalDias) * 100) : 0;
-
-    // Update stat cards
-    var statFases = document.getElementById('stat-fases');
-    var statCompletadas = document.getElementById('stat-completadas');
-    var statDesarrollo = document.getElementById('stat-desarrollo');
-    var statPendientes = document.getElementById('stat-pendientes');
-
-    if (statFases) statFases.textContent = totalProyectos;
-    if (statCompletadas) statCompletadas.textContent = proyectosCompletados;
-    if (statDesarrollo) statDesarrollo.textContent = proyectosEnCurso;
-    if (statPendientes) statPendientes.textContent = diasPendientes;
-
-    // Update progress bar
-    var progressFill = document.getElementById('progress-fill');
-    if (progressFill) {
-      setTimeout(function() {
-        progressFill.style.width = percent + '%';
-        progressFill.textContent = percent + '%';
-      }, 300);
-    }
-
-    // Build legend from periodos
-    var legend = document.getElementById('progress-legend');
-    if (legend) {
-      var html = '';
-      cronogramaData.periodos.forEach(function(periodo) {
-        var pCompleto = true;
-        var pEnCurso = false;
-        periodo.dias.forEach(function(dia) {
-          var parsed = parseCronogramaDate(dia.fecha);
-          if (!parsed) return;
-          if (now <= parsed.end) pCompleto = false;
-          if (now >= parsed.start && now <= parsed.end) pEnCurso = true;
+      // Desktop
+      var dc = document.getElementById('d-crono-content');
+      if (dc) {
+        var dh = '';
+        data.periodos.forEach(function(p) {
+          dh += '<div class="d-crono-project"><div class="d-crono-project-header">' + p.titulo + '</div><div class="d-crono-grid">';
+          p.dias.forEach(function(d) {
+            dh += '<div class="d-crono-day"><div class="d-crono-day-date">' + d.fecha + '</div><div class="d-crono-day-title">' + d.titulo + '</div><ul>';
+            d.actividades.forEach(function(a) { dh += '<li>' + a + '</li>'; });
+            dh += '</ul></div>';
+          });
+          dh += '</div></div>';
         });
+        dc.innerHTML = dh;
+      }
 
-        var dotClass = 'dot-pending';
-        if (pCompleto && periodo.dias.length > 0) dotClass = 'dot-completed';
-        else if (pEnCurso) dotClass = 'dot-in-progress';
+      // Mobile - solo Fase 3A (Axion) y 3B (Shell) con tabs
+      var mobAxion = document.getElementById('mob-crono-axion');
+      var mobShell = document.getElementById('mob-crono-shell');
 
-        // Extract short name from title
-        var name = periodo.titulo.replace(/^[^\s]+\s*/, '').split('(')[0].trim();
-        if (name.length > 30) name = name.substring(0, 30) + '...';
+      function buildMobCrono(periodo) {
+        var h = '<div class="mob-crono-block"><div class="mob-crono-block-title">' + periodo.titulo + '</div>';
+        periodo.dias.forEach(function(d) {
+          h += '<div class="mob-crono-item"><div class="mob-crono-date">' + d.fecha + '</div><div class="mob-crono-title">' + d.titulo + '</div><ul class="mob-crono-acts">';
+          d.actividades.forEach(function(a) { h += '<li>' + a + '</li>'; });
+          h += '</ul></div>';
+        });
+        h += '</div>';
+        return h;
+      }
 
-        html += '<span class="progress-phase-label"><span class="dot ' + dotClass + '"></span> ' + name + '</span>';
+      // Fase 3A = index 2, Fase 3B = index 3, Historico = index 0+1
+      if (mobAxion && data.periodos[2]) mobAxion.innerHTML = buildMobCrono(data.periodos[2]);
+      if (mobShell && data.periodos[3]) mobShell.innerHTML = buildMobCrono(data.periodos[3]);
+      var mobHist = document.getElementById('mob-crono-historico');
+      if (mobHist) {
+        var hh = '';
+        if (data.periodos[0]) hh += buildMobCrono(data.periodos[0]);
+        if (data.periodos[1]) hh += buildMobCrono(data.periodos[1]);
+        mobHist.innerHTML = hh;
+      }
+
+      // Setup tabs
+      document.querySelectorAll('.mob-crono-tab').forEach(function(tab) {
+        tab.addEventListener('click', function() {
+          var target = this.getAttribute('data-crono');
+          document.querySelectorAll('.mob-crono-tab').forEach(function(t) { t.classList.remove('active'); });
+          document.querySelectorAll('.mob-crono-panel').forEach(function(p) { p.classList.remove('active'); });
+          this.classList.add('active');
+          var panel = document.getElementById(target);
+          if (panel) panel.classList.add('active');
+        });
       });
-      legend.innerHTML = html;
-    }
+    } catch(e) {}
   }
 
-  /**
-   * Main initialization
-   */
+  // ============ CAROUSEL ============
+  function setupCarousel() {
+    var carousel = document.querySelector('.mob-carousel');
+    var dotsC = document.getElementById('mob-carousel-dots');
+    if (!carousel || !dotsC) return;
+    var cards = carousel.querySelectorAll('.mob-carousel-card');
+    var dh = '';
+    for (var i = 0; i < cards.length; i++) dh += '<div class="mob-carousel-dot' + (i === 0 ? ' active' : '') + '"></div>';
+    dotsC.innerHTML = dh;
+    var dots = dotsC.querySelectorAll('.mob-carousel-dot');
+    carousel.addEventListener('scroll', function() {
+      var idx = Math.round(carousel.scrollLeft / (cards[0].offsetWidth + 10));
+      dots.forEach(function(d, i) { d.classList.toggle('active', i === idx); });
+    });
+  }
+
+  // ============ INIT ============
   document.addEventListener('DOMContentLoaded', function() {
-    initDOM();
     setupTabs();
-    loadCronograma();
-    setupScrollAnimations();
     updateDateTime();
     setInterval(updateDateTime, 1000);
+    renderAllFases();
+    updateProgress();
+    loadCronograma();
+    setupCarousel();
   });
 
 })();

@@ -1,299 +1,396 @@
 {
-  "titulo": "Cronograma de Desarrollo Completo - 13 Enero 2026 en adelante",
+  "titulo": "Cronograma de Desarrollo Completo",
   "periodos": [
     {
-      "titulo": "🏗️ PROYECTO 1: Sistema de Consulta CUITS + Base de Datos + Mobile (28 Enero - 13 Febrero 2026)",
+      "titulo": "Fase 1: Sistema de Consulta CUITS + Base de Datos (28 Enero - 13 Febrero 2026)",
       "dias": [
         {
           "fecha": "28 Enero",
           "titulo": "Inicio Desarrollo CUIT",
           "actividades": [
-            "Implementación final del motor de búsqueda CUIT",
-            "Configuración de base de datos para almacenamiento de datos CUIT",
-            "Validación completa de estructura de datos fiscales",
-            "Testing con datos reales de consulta masiva",
-            "Optimización de performance de búsqueda"
+            "Implementacion del motor de busqueda CUIT",
+            "Configuracion de base de datos",
+            "Validacion de estructura de datos fiscales",
+            "Testing con datos reales"
           ]
         },
         {
           "fecha": "29 Enero",
           "titulo": "Interfaz de Usuario CUIT",
           "actividades": [
-            "Desarrollo del layout principal con navegación por pestañas",
-            "Implementación del sistema de búsqueda individual y masiva",
-            "Creación de paneles de resultados con información completa",
-            "Sistema de filtros avanzados (provincia, estado)"
+            "Layout principal con navegacion por pestanas",
+            "Sistema de busqueda individual y masiva",
+            "Paneles de resultados con informacion completa",
+            "Filtros avanzados (provincia, estado)"
           ]
         },
         {
           "fecha": "30 Enero",
-          "titulo": "Funcionalidades Avanzadas CUIT",
+          "titulo": "Funcionalidades Avanzadas",
           "actividades": [
-            "Implementación del historial de búsquedas",
-            "Sistema de exportación (PDF, Excel, CSV) con formato profesional",
-            "Búsqueda por actividad económica",
-            "Comparador de CUITs: análisis lado a lado",
-            "Sistema de carga y estados de error"
+            "Historial de busquedas",
+            "Exportacion (PDF, Excel, CSV)",
+            "Busqueda por actividad economica",
+            "Comparador de CUITs"
           ]
         },
         {
           "fecha": "31 Enero",
-          "titulo": "Diseño y UX CUIT",
+          "titulo": "Diseno y UX",
           "actividades": [
-            "Implementación de paleta negro-dorado-blanco",
-            "Animaciones y transiciones suaves",
-            "Sistema de autenticación con modal profesional",
-            "Optimización Mobile First para dispositivos móviles",
-            "Testing de usabilidad en mobile y desktop"
+            "Paleta negro-dorado-blanco",
+            "Animaciones y transiciones",
+            "Autenticacion con modal profesional",
+            "Optimizacion Mobile First"
           ]
         },
         {
-          "fecha": "1 Febrero",
-          "titulo": "Estadísticas y Comparador",
+          "fecha": "2-3 Febrero",
+          "titulo": "Estadisticas y Optimizacion",
           "actividades": [
-            "Desarrollo de sección de Estadísticas de Uso",
-            "Métricas de consultas realizadas y tendencias",
-            "Pulido del Comparador de CUITs",
-            "Testing general de funcionalidades"
+            "Seccion de Estadisticas de Uso",
+            "Metricas de consultas y tendencias",
+            "Testing cross-browser y responsive",
+            "Optimizacion de performance"
           ]
         },
         {
-          "fecha": "2 Febrero",
-          "titulo": "Optimización CUIT",
+          "fecha": "4-6 Febrero",
+          "titulo": "Documentacion y Despliegue",
           "actividades": [
-            "Testing funcional completo del sistema CUIT",
-            "Validación cross-browser y responsive en móviles",
-            "Optimización de performance y carga en dispositivos móviles",
-            "Testing de base de datos y consultas",
-            "Preparación para despliegue"
+            "Documentacion tecnica completa",
+            "Subida al repositorio GitHub",
+            "Testing en produccion",
+            "Ajustes basados en testing real"
           ]
         },
         {
-          "fecha": "3 Febrero",
-          "titulo": "Documentación CUIT",
+          "fecha": "7-13 Febrero",
+          "titulo": "Entrega y Soporte",
           "actividades": [
-            "Creación de documentación técnica completa",
-            "Guía de usuario e instalación",
-            "Comentarios detallados en código fuente",
-            "Preparación de archivos para producción",
-            "Testing final en entorno local"
-          ]
-        },
-        {
-          "fecha": "4 Febrero",
-          "titulo": "Despliegue Sistema CUIT",
-          "actividades": [
-            "Configuración del repositorio y estructura final",
-            "Subida de archivos al repositorio de GitHub",
-            "Testing en entorno de producción",
-            "Monitoreo inicial del sistema"
-          ]
-        },
-        {
-          "fecha": "5 Febrero",
-          "titulo": "Ajustes Finales CUIT",
-          "actividades": [
-            "Revisión final de funcionalidades implementadas",
-            "Ajustes basados en testing real",
-            "Optimización de recursos y assets",
-            "Actualización de documentación de entrega, en caso necesario",
-            "Configuración de soporte y mantenimiento"
-          ]
-        },
-        {
-          "fecha": "6 Febrero",
-          "titulo": "Entrega Proyecto CUIT",
-          "actividades": [
-            "Configuración de acceso y permisos"
-          ]
-        },
-        {
-          "fecha": "7 Febrero",
-          "titulo": "Monitoreo y Soporte CUIT",
-          "actividades": [
-            "Configuración de monitoreo básico del sistema"
-          ]
-        },
-        {
-          "fecha": "8 Febrero",
-          "titulo": "Mantenimiento Inicial CUIT",
-          "actividades": [
-            "Corrección de issues después del testing en producción",
-            "Optimizaciones menores de performance",
-            "Preparación para transición al siguiente proyecto",
-            "Cierre administrativo del proyecto CUIT"
-          ]
-        },
-        {
-          "fecha": "9-13 Febrero",
-          "titulo": "Transición y Documentación Final CUIT",
-          "actividades": [
-            "Documentación completa del proyecto desarrollado",
-            "Archivos finales y backups del sistema",
-            "Informe técnico de implementación",
-            "Plan de transición al proyecto Riesgo Crediticio"
+            "Configuracion de acceso y permisos",
+            "Monitoreo del sistema",
+            "Correccion de issues post-deploy",
+            "Transicion al proyecto de Riesgo Crediticio"
           ]
         }
       ]
     },
     {
-      "titulo": "📊 PROYECTO 2: Sistema de Riesgo Crediticio + APIs BCRA + Base de Datos (13 Febrero - 13 Marzo 2026)",
+      "titulo": "Fase 2: Sistema de Riesgo Crediticio + APIs BCRA (13 Febrero - 13 Marzo 2026)",
       "dias": [
         {
-          "fecha": "13 Febrero",
-          "titulo": "Inicio Proyecto Riesgo Crediticio",
-          "actividades": [
-            "Análisis de requerimientos del sistema de riesgo crediticio",
-            "Configuración de credenciales para APIs del BCRA",
-            "Definición del alcance y objetivos específicos",
-            "Revisión de endpoints BCRA: Central de Deudores",
-            "Planificación de arquitectura de base de datos",
-            "Configuración del entorno de desarrollo"
-          ]
-        },
-        {
-          "fecha": "14 Febrero",
+          "fecha": "13-14 Febrero",
           "titulo": "Arquitectura y Base de Datos",
           "actividades": [
-            "Diseño del esquema de base de datos para consultas y resultados",
-            "Configuración de la base de datos para almacenamiento persistente",
-            "Planificación de integración con APIs BCRA",
-            "Diseño de modelos de datos para scoring crediticio",
-            "Arquitectura de reportes de riesgo"
+            "Analisis de requerimientos de riesgo crediticio",
+            "Diseno de esquema de base de datos",
+            "Configuracion de credenciales BCRA",
+            "Planificacion de integracion"
           ]
         },
         {
-          "fecha": "15 Febrero",
-          "titulo": "Integración APIs BCRA",
+          "fecha": "16-17 Febrero",
+          "titulo": "Integracion APIs BCRA",
           "actividades": [
-            "Conexión con API BCRA - Central de Deudores del Sistema Financiero",
-            "Implementación de consultas de situación crediticia por CUIT",
-            "Manejo de respuestas de API y mapeo de datos",
-            "Testing de conexión y autenticación con BCRA",
-            "Almacenamiento de respuestas en base de datos"
+            "Conexion con Central de Deudores",
+            "Consultas de situacion crediticia por CUIT",
+            "Cheques rechazados y morosidad",
+            "Cache inteligente con fallback"
           ]
         },
         {
-          "fecha": "16 Febrero",
-          "titulo": "Motor de Evaluación y Scoring",
+          "fecha": "18-19 Febrero",
+          "titulo": "Panel de Riesgo y Reportes",
           "actividades": [
-            "Desarrollo de sistema de scoring automático basado en datos BCRA",
-            "Integración con base de datos de CUIT existente",
-            "Validación de reglas de negocio para evaluación",
-            "Testing de precisión de algoritmos de scoring"
+            "Indicadores visuales en resultados de busqueda",
+            "Datos BCRA junto a datos tributarios",
+            "Graficos de riesgo historico",
+            "Exportacion de reportes"
           ]
         },
         {
-          "fecha": "17 Febrero",
-          "titulo": "Integración de Riesgo en Buscador CUIT",
+          "fecha": "20-21 Febrero",
+          "titulo": "Optimizacion y Despliegue",
           "actividades": [
-            "Integración de consulta de riesgo crediticio dentro del buscador de CUITs existente",
-            "Implementación de indicadores visuales (semáforo de riesgo) en resultados de búsqueda",
-            "Visualización de datos BCRA junto a datos tributarios del CUIT",
-            "Indicadores de deuda, clasificación y entidades reportantes en la ficha del CUIT"
+            "Optimizacion de consultas a base de datos",
+            "Testing integral con datos reales",
+            "Migracion a produccion",
+            "Validacion de funcionamiento"
           ]
         },
         {
-          "fecha": "18 Febrero",
-          "titulo": "Sistema de Reportes",
+          "fecha": "23-28 Febrero",
+          "titulo": "Testing y Ajustes",
           "actividades": [
-            "Desarrollo de reportes detallados con datos del BCRA",
-            "Implementación de gráficos de riesgo histórico",
-            "Sistema de alertas y recomendaciones",
-            "Exportación de reportes en PDF y Excel",
-            "Historial de consultas almacenado en base de datos"
+            "Testing completo con datos reales via BCRA",
+            "Verificacion de almacenamiento",
+            "Ajustes de parametros de evaluacion"
           ]
         },
         {
-          "fecha": "19 Febrero",
-          "titulo": "Base de Datos e Integración",
-          "actividades": [
-            "Optimización de consultas a base de datos",
-            "Implementación de caché para consultas frecuentes al BCRA",
-            "Validación de integridad de datos cruzados",
-            "Testing de integración completa API BCRA + Base de Datos"
-          ]
-        },
-        {
-          "fecha": "20 Febrero",
-          "titulo": "Panel de Administración",
-          "actividades": [
-            "Desarrollo de panel administrativo para riesgo",
-            "Dashboard de métricas y estadísticas de consultas",
-            "Sistema de auditoría de evaluaciones realizadas",
-            "Herramientas de mantenimiento de base de datos"
-          ]
-        },
-        {
-          "fecha": "21 Febrero",
-          "titulo": "Optimización y Documentación",
-          "actividades": [
-            "Optimización de algoritmos y consultas a base de datos",
-            "Documentación técnica: integración APIs BCRA",
-            "Documentación de estructura de base de datos",
-            "Testing de carga y estrés del sistema",
-            "Preparación de documentación de despliegue"
-          ]
-        },
-        {
-          "fecha": "22 Febrero",
-          "titulo": "Despliegue Sistema de Riesgo",
-          "actividades": [
-            "Configuración del entorno de producción",
-            "Migración de base de datos a producción",
-            "Configuración de conexión segura con APIs BCRA",
-            "Validación final de funcionamiento"
-          ]
-        },
-        {
-          "fecha": "23 Febrero - 28 Febrero",
-          "titulo": "Testing Integral y Ajustes",
-          "actividades": [
-            "Testing completo con datos reales de clientes vía BCRA",
-            "Verificación de almacenamiento correcto en base de datos",
-            "Ajustes de scoring y parámetros de evaluación"
-          ]
-        },
-        {
-          "fecha": "1 Marzo - 5 Marzo",
+          "fecha": "2-6 Marzo",
           "titulo": "Panel de Alertas Tempranas",
           "actividades": [
-            "Desarrollo de panel independiente de Alertas Tempranas",
-            "Watchlist de CUITs bajo seguimiento con estados visuales",
-            "Sistema de actualización automática diaria de situación crediticia",
-            "Notificaciones al detectar cambios de situación",
-            "Feed cronológico de novedades y eventos relevantes",
-            "Testing de alertas con datos reales"
+            "Watchlist de CUITs bajo seguimiento",
+            "Actualizacion automatica semanal",
+            "Deteccion de cambios de situacion",
+            "Feed cronologico de novedades"
           ]
         },
         {
-          "fecha": "6 Marzo - 10 Marzo",
-          "titulo": "Panel de Score de Confianza Interno",
+          "fecha": "7-11 Marzo",
+          "titulo": "Score de Confianza Interno",
           "actividades": [
-            "Desarrollo de panel independiente de Score de Confianza",
-            "Scoring manual complementario al scoring del BCRA",
-            "Interfaz de ajuste de score por usuario según criterio profesional",
-            "Sistema de notas y justificación por CUIT",
-            "Histórico de cambios en score de confianza",
-            "Integración visual con datos del buscador de CUITs"
+            "Scoring manual escala 1-5",
+            "Notas y justificacion por CUIT",
+            "Historico de cambios",
+            "Integracion visual con buscador"
           ]
         },
         {
-          "fecha": "11 Marzo - 12 Marzo",
-          "titulo": "Testing Final y Pulido",
+          "fecha": "12-13 Marzo",
+          "titulo": "Testing Final y Entrega",
           "actividades": [
-            "Testing integral de Alertas + Score + Riesgo Crediticio",
-            "Optimización de rendimiento general",
-            "Ajustes finales de interfaz y UX"
+            "Testing integral Alertas + Score + Riesgo",
+            "Optimizacion de rendimiento",
+            "Presentacion final del sistema",
+            "Entrega de documentacion"
+          ]
+        }
+      ]
+    },
+    {
+      "titulo": "Fase 3A: Precios de Combustibles - Energy Center / Axion (28 Marzo - 25 Abril 2026)",
+      "dias": [
+        {
+          "fecha": "28 Marzo",
+          "titulo": "Analisis de Plataforma",
+          "actividades": [
+            "Analisis del flujo OAuth2 de Energy Center",
+            "Estudio de la estructura de la plataforma",
+            "Identificacion de endpoints de precios",
+            "Mapeo de datos por estacion"
           ]
         },
         {
-          "fecha": "13 Marzo",
-          "titulo": "Entrega Sistema de Riesgo Crediticio",
+          "fecha": "30-31 Marzo",
+          "titulo": "Prototipo de Autenticacion",
           "actividades": [
-            "Presentación final del sistema con APIs BCRA integradas",
-            "Entrega de documentación técnica y de usuario",
-            "Entrega de esquema y acceso a base de datos"
+            "Pruebas de autenticacion con Azure B2C",
+            "Desarrollo del modulo de login automatico",
+            "Manejo de tokens y sesiones",
+            "Testing de estabilidad del login"
+          ]
+        },
+        {
+          "fecha": "1 Abril",
+          "titulo": "Navegacion Automatizada",
+          "actividades": [
+            "Navegacion programatica dentro de la plataforma",
+            "Identificacion de selectores de datos",
+            "Manejo de carga dinamica de contenido"
+          ]
+        },
+        {
+          "fecha": "4 Abril",
+          "titulo": "Extraccion de Precios Basicos",
+          "actividades": [
+            "Extraccion de Costo Basico (CB)",
+            "Extraccion de ITC (impuesto interno)",
+            "Extraccion de CO2 (impuesto interno)",
+            "Extraccion de Precio Surtidor"
+          ]
+        },
+        {
+          "fecha": "6-8 Abril",
+          "titulo": "Extraccion FOB",
+          "actividades": [
+            "Extraccion de precio FOB por estacion",
+            "Navegacion entre diferentes estaciones",
+            "Validacion de datos extraidos",
+            "Manejo de estaciones sin FOB"
+          ]
+        },
+        {
+          "fecha": "9-11 Abril",
+          "titulo": "Simulacion CIF",
+          "actividades": [
+            "Simulacion automatica de pedido para obtener CIF",
+            "Configuracion de fecha (hoy o proxima habilitada)",
+            "Sin contrato, comparacion ITC/CO2 con FOB",
+            "Manejo de estaciones sin CIF"
+          ]
+        },
+        {
+          "fecha": "13-15 Abril",
+          "titulo": "Soporte Multi-Estacion",
+          "actividades": [
+            "Iteracion automatica por todas las estaciones",
+            "Datos independientes por cada cuenta",
+            "Consolidacion de resultados",
+            "Manejo de errores por estacion"
+          ]
+        },
+        {
+          "fecha": "16-17 Abril",
+          "titulo": "Base de Datos de Precios",
+          "actividades": [
+            "Esquema de base de datos para precios Axion",
+            "Almacenamiento con fecha de actualizacion",
+            "Historico de precios por producto",
+            "API interna para consulta de precios"
+          ]
+        },
+        {
+          "fecha": "18 Abril",
+          "titulo": "Panel de Precios Axion",
+          "actividades": [
+            "Nueva seccion en sistema Berria para precios Axion",
+            "Vista por estacion con todos los valores",
+            "Indicador de ultima actualizacion",
+            "Diseño responsive"
+          ]
+        },
+        {
+          "fecha": "20-22 Abril",
+          "titulo": "Automatizacion",
+          "actividades": [
+            "Tarea programada diaria a las 7:00 AM",
+            "Manejo de errores y reintentos",
+            "Alertas si falla la extraccion",
+            "Logs de ejecucion"
+          ]
+        },
+        {
+          "fecha": "23-24 Abril",
+          "titulo": "Testing Integral Axion",
+          "actividades": [
+            "Testing con todas las estaciones",
+            "Verificacion de datos vs plataforma real",
+            "Optimizacion de rendimiento",
+            "Ajustes finales"
+          ]
+        },
+        {
+          "fecha": "25 Abril",
+          "titulo": "Entrega Energy Center",
+          "actividades": [
+            "Deploy a produccion del modulo Axion",
+            "Validacion final en entorno productivo",
+            "Documentacion del modulo"
+          ]
+        }
+      ]
+    },
+    {
+      "titulo": "Fase 3B: Precios de Combustibles - CSOnline / Shell (27 Abril - 27 Mayo 2026)",
+      "dias": [
+        {
+          "fecha": "27-29 Abril",
+          "titulo": "Analisis de Plataforma CSOnline",
+          "actividades": [
+            "Analisis del flujo OAuth2 de CSOnline (Raizen)",
+            "Estudio de estructura y navegacion",
+            "Identificacion de endpoints de precios",
+            "Mapeo de cuentas (estaciones + AGRO)"
+          ]
+        },
+        {
+          "fecha": "30 Abril",
+          "titulo": "Autenticacion CSOnline",
+          "actividades": [
+            "Desarrollo de login automatico CSOnline",
+            "Manejo de tokens Azure B2C",
+            "Testing de estabilidad"
+          ]
+        },
+        {
+          "fecha": "2 Mayo",
+          "titulo": "Navegacion y Selectores",
+          "actividades": [
+            "Navegacion programatica en CSOnline",
+            "Identificacion de selectores de precios",
+            "Manejo de carga dinamica"
+          ]
+        },
+        {
+          "fecha": "4-6 Mayo",
+          "titulo": "Extraccion Estaciones de Servicio",
+          "actividades": [
+            "Extraccion de FOB y CIF por estacion",
+            "Extraccion de IDC (CO2) e ICL (ITC)",
+            "Extraccion de Precio Sugerido",
+            "Soporte para las 4 estaciones"
+          ]
+        },
+        {
+          "fecha": "7-9 Mayo",
+          "titulo": "Cuentas AGRO",
+          "actividades": [
+            "Extraccion de datos cuenta AGRO Gral Pico",
+            "Extraccion de datos cuenta AGRO Pehuajo",
+            "Extraccion de datos cuenta AGRO Pihue",
+            "Productos especificos de cada cuenta AGRO"
+          ]
+        },
+        {
+          "fecha": "11-13 Mayo",
+          "titulo": "Multi-Cuenta y Consolidacion",
+          "actividades": [
+            "Iteracion automatica por todas las cuentas",
+            "Consolidacion de datos de 4 estaciones + 3 AGRO",
+            "Validacion cruzada de datos",
+            "Manejo de errores por cuenta"
+          ]
+        },
+        {
+          "fecha": "14-15 Mayo",
+          "titulo": "Base de Datos de Precios Shell",
+          "actividades": [
+            "Esquema de base de datos para precios Shell",
+            "Almacenamiento con fecha de actualizacion",
+            "Historico de precios por producto y cuenta",
+            "API interna para consulta"
+          ]
+        },
+        {
+          "fecha": "16 Mayo",
+          "titulo": "Panel de Precios Shell",
+          "actividades": [
+            "Seccion de precios Shell en sistema Berria",
+            "Vista por estacion y por cuenta AGRO",
+            "Indicador de ultima actualizacion"
+          ]
+        },
+        {
+          "fecha": "18-20 Mayo",
+          "titulo": "Comparativas entre Petroleras",
+          "actividades": [
+            "Tabla comparativa Axion vs Shell",
+            "Comparacion por tipo de combustible",
+            "Diferencias de precio destacadas",
+            "Vista unificada de todas las estaciones"
+          ]
+        },
+        {
+          "fecha": "21-23 Mayo",
+          "titulo": "Automatizacion y Testing",
+          "actividades": [
+            "Tarea programada diaria 7:00 AM (Shell + Axion)",
+            "Manejo de errores y reintentos",
+            "Testing integral con todas las cuentas",
+            "Alertas si falla la extraccion"
+          ]
+        },
+        {
+          "fecha": "26-27 Mayo",
+          "titulo": "Entrega CSOnline y Cierre Fase 3",
+          "actividades": [
+            "Deploy a produccion del modulo Shell",
+            "Testing final del sistema completo de precios",
+            "Documentacion tecnica completa",
+            "Entrega del modulo de precios"
           ]
         }
       ]

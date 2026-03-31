@@ -15,20 +15,33 @@
       'Panel de riesgo integrado en resultados de busqueda', 'Alertas Tempranas (watchlist con deteccion de cambios)', 'Actualizacion automatica semanal',
       'Score de Confianza interno (escala 1-5) con historial', 'Feed cronologico de alertas y novedades', 'Indicadores visuales datos frescos vs cache'
     ]},
-    { id: 'fase3a', title: 'Fase 3A: Precios Energy Center (Axion)', short: 'Axion', period: '28 Marzo - 25 Abril 2026', status: 'in-progress', tasks: [
-      'Analisis del flujo OAuth2 de Energy Center', 'Desarrollo del modulo de login automatico', 'Navegacion programatica dentro de la plataforma',
-      'Extraccion de Costo Basico (CB) por estacion', 'Extraccion de ITC (impuesto interno)', 'Extraccion de CO2 (impuesto interno)',
-      'Extraccion de Precio Surtidor (precio sugerido)', 'Extraccion de precio FOB por estacion', 'Simulacion automatica de pedido para obtener CIF',
-      'Soporte multi-estacion con datos independientes', 'Manejo de estaciones con solo FOB o solo CIF', 'Base de datos para precios con historico',
-      'Panel de precios Axion en sistema Berria', 'Tarea programada diaria a las 7:00 AM', 'Testing integral con todas las estaciones', 'Deploy a produccion del modulo Axion'
-    ]},
-    { id: 'fase3b', title: 'Fase 3B: Precios CSOnline (Shell / Raizen)', short: 'Shell', period: '27 Abril - 27 Mayo 2026', status: 'pending', tasks: [
+    { id: 'fase3b', title: 'Fase 3B: Precios CSOnline (Shell / Raizen)', short: 'Shell', period: '28 Marzo - 25 Abril 2026', status: 'in-progress', tasks: [
       'Analisis del flujo OAuth2 de CSOnline (Raizen)', 'Desarrollo de login automatico CSOnline', 'Navegacion programatica en CSOnline',
       'Extraccion de FOB y CIF por estacion', 'Extraccion de IDC (CO2) e ICL (ITC)', 'Extraccion de Precio Sugerido (surtidor)',
       'Soporte para las 4 estaciones de servicio', 'Extraccion de datos cuenta AGRO Gral Pico', 'Extraccion de datos cuenta AGRO Pehuajo',
       'Extraccion de datos cuenta AGRO Pihue', 'Consolidacion de datos de 7 cuentas', 'Base de datos para precios Shell con historico',
       'Panel de precios Shell en sistema Berria', 'Tabla comparativa Axion vs Shell', 'Automatizacion diaria 7:00 AM (Shell + Axion)',
       'Testing integral con todas las cuentas', 'Deploy a produccion y entrega Fase 3'
+    ], deadlines: [
+      '2026-03-29', '2026-03-31', '2026-04-01',
+      '2026-04-04', '2026-04-05', '2026-04-05',
+      '2026-04-06', '2026-04-07', '2026-04-08',
+      '2026-04-09', '2026-04-13', '2026-04-15',
+      '2026-04-16', '2026-04-20', '2026-04-23',
+      '2026-04-24', '2026-04-25'
+    ]},
+    { id: 'fase3a', title: 'Fase 3A: Precios Energy Center (Axion)', short: 'Axion', period: '27 Abril - 27 Mayo 2026', status: 'pending', tasks: [
+      'Analisis del flujo OAuth2 de Energy Center', 'Desarrollo del modulo de login automatico', 'Navegacion programatica dentro de la plataforma',
+      'Extraccion de Costo Basico (CB) por estacion', 'Extraccion de ITC (impuesto interno)', 'Extraccion de CO2 (impuesto interno)',
+      'Extraccion de Precio Surtidor (precio sugerido)', 'Extraccion de precio FOB por estacion', 'Simulacion automatica de pedido para obtener CIF',
+      'Soporte multi-estacion con datos independientes', 'Manejo de estaciones con solo FOB o solo CIF', 'Base de datos para precios con historico',
+      'Panel de precios Axion en sistema Berria', 'Tarea programada diaria a las 7:00 AM', 'Testing integral con todas las estaciones', 'Deploy a produccion del modulo Axion'
+    ], deadlines: [
+      '2026-04-27', '2026-04-30', '2026-05-01',
+      '2026-05-04', '2026-05-04', '2026-05-04',
+      '2026-05-04', '2026-05-08', '2026-05-11',
+      '2026-05-14', '2026-05-15', '2026-05-17',
+      '2026-05-18', '2026-05-22', '2026-05-24', '2026-05-27'
     ]}
   ];
 
@@ -38,11 +51,23 @@
   function isTaskDone(faseId, idx) {
     var f = FASES.find(function(x) { return x.id === faseId; });
     if (f && f.status === 'completed') return true;
+    // Auto-tick: si la fecha limite ya paso, la tarea esta completada
+    if (f && f.deadlines && f.deadlines[idx]) {
+      var today = new Date(); today.setHours(0,0,0,0);
+      var dl = new Date(f.deadlines[idx] + 'T00:00:00'); dl.setHours(0,0,0,0);
+      if (today >= dl) return true;
+    }
     return !!getState()[faseId + '_' + idx];
   }
   function toggleTask(faseId, idx) {
     var f = FASES.find(function(x) { return x.id === faseId; });
     if (f && f.status === 'completed') return;
+    // No permitir destildar tareas auto-completadas por fecha
+    if (f && f.deadlines && f.deadlines[idx]) {
+      var today = new Date(); today.setHours(0,0,0,0);
+      var dl = new Date(f.deadlines[idx] + 'T00:00:00'); dl.setHours(0,0,0,0);
+      if (today >= dl) return;
+    }
     var s = getState(); s[faseId + '_' + idx] = !s[faseId + '_' + idx]; saveState(s);
     renderFase(faseId); updateProgress();
   }
@@ -64,9 +89,15 @@
     // Build task HTML (reused)
     function buildTasks(prefix) {
       var h = '';
+      var today = new Date(); today.setHours(0,0,0,0);
       fase.tasks.forEach(function(task, idx) {
         var isDone = isTaskDone(faseId, idx);
         var isLocked = fase.status === 'completed';
+        // Tareas auto-completadas por fecha tambien son locked
+        if (!isLocked && fase.deadlines && fase.deadlines[idx]) {
+          var dl = new Date(fase.deadlines[idx] + 'T00:00:00'); dl.setHours(0,0,0,0);
+          if (today >= dl) isLocked = true;
+        }
         if (prefix === 'mob') {
           var cls = isLocked ? 'mob-task-item locked' : isDone ? 'mob-task-item done' : 'mob-task-item';
           var oc = isLocked ? '' : ' onclick="window.__toggle(\'' + faseId + '\',' + idx + ')"';
@@ -115,9 +146,14 @@
       html += '<div class="d-timeline-period">' + fase.period + '</div>';
       html += '<div class="d-phase-progress"><div class="d-phase-progress-bar"><div class="d-phase-progress-fill" style="width:' + pct + '%;"></div></div><span class="d-phase-progress-text">' + done + '/' + fase.tasks.length + '</span></div>';
       html += '<div class="d-timeline-tasks">';
+      var today = new Date(); today.setHours(0,0,0,0);
       fase.tasks.forEach(function(task, idx) {
         var isDone = isTaskDone(fase.id, idx);
         var isLocked = fase.status === 'completed';
+        if (!isLocked && fase.deadlines && fase.deadlines[idx]) {
+          var dl = new Date(fase.deadlines[idx] + 'T00:00:00'); dl.setHours(0,0,0,0);
+          if (today >= dl) isLocked = true;
+        }
         var cls = isDone ? 'd-task done' : 'd-task pending';
         var oc = isLocked ? '' : ' onclick="window.__toggle(\'' + fase.id + '\',' + idx + ')"';
         var icon = isDone ? '<i class="fas fa-check-circle"></i>' : '<i class="far fa-circle"></i>';
@@ -275,9 +311,9 @@
         return h;
       }
 
-      // Fase 3A = index 2, Fase 3B = index 3, Historico = index 0+1
-      if (mobAxion && data.periodos[2]) mobAxion.innerHTML = buildMobCrono(data.periodos[2]);
-      if (mobShell && data.periodos[3]) mobShell.innerHTML = buildMobCrono(data.periodos[3]);
+      // Fase 3B (Shell) = index 2, Fase 3A (Axion) = index 3, Historico = index 0+1
+      if (mobShell && data.periodos[2]) mobShell.innerHTML = buildMobCrono(data.periodos[2]);
+      if (mobAxion && data.periodos[3]) mobAxion.innerHTML = buildMobCrono(data.periodos[3]);
       var mobHist = document.getElementById('mob-crono-historico');
       if (mobHist) {
         var hh = '';

@@ -161,133 +161,10 @@
       ]
     },
     {
-      "titulo": "Fase 3A: Precios de Combustibles - Energy Center / Axion (28 Marzo - 25 Abril 2026)",
+      "titulo": "Fase 3B: Precios de Combustibles - CSOnline / Shell (28 Marzo - 25 Abril 2026)",
       "dias": [
         {
-          "fecha": "28 Marzo",
-          "titulo": "Analisis de Plataforma",
-          "actividades": [
-            "Analisis del flujo OAuth2 de Energy Center",
-            "Estudio de la estructura de la plataforma",
-            "Identificacion de endpoints de precios",
-            "Mapeo de datos por estacion"
-          ]
-        },
-        {
-          "fecha": "30-31 Marzo",
-          "titulo": "Prototipo de Autenticacion",
-          "actividades": [
-            "Pruebas de autenticacion con Azure B2C",
-            "Desarrollo del modulo de login automatico",
-            "Manejo de tokens y sesiones",
-            "Testing de estabilidad del login"
-          ]
-        },
-        {
-          "fecha": "1 Abril",
-          "titulo": "Navegacion Automatizada",
-          "actividades": [
-            "Navegacion programatica dentro de la plataforma",
-            "Identificacion de selectores de datos",
-            "Manejo de carga dinamica de contenido"
-          ]
-        },
-        {
-          "fecha": "4 Abril",
-          "titulo": "Extraccion de Precios Basicos",
-          "actividades": [
-            "Extraccion de Costo Basico (CB)",
-            "Extraccion de ITC (impuesto interno)",
-            "Extraccion de CO2 (impuesto interno)",
-            "Extraccion de Precio Surtidor"
-          ]
-        },
-        {
-          "fecha": "6-8 Abril",
-          "titulo": "Extraccion FOB",
-          "actividades": [
-            "Extraccion de precio FOB por estacion",
-            "Navegacion entre diferentes estaciones",
-            "Validacion de datos extraidos",
-            "Manejo de estaciones sin FOB"
-          ]
-        },
-        {
-          "fecha": "9-11 Abril",
-          "titulo": "Simulacion CIF",
-          "actividades": [
-            "Simulacion automatica de pedido para obtener CIF",
-            "Configuracion de fecha (hoy o proxima habilitada)",
-            "Sin contrato, comparacion ITC/CO2 con FOB",
-            "Manejo de estaciones sin CIF"
-          ]
-        },
-        {
-          "fecha": "13-15 Abril",
-          "titulo": "Soporte Multi-Estacion",
-          "actividades": [
-            "Iteracion automatica por todas las estaciones",
-            "Datos independientes por cada cuenta",
-            "Consolidacion de resultados",
-            "Manejo de errores por estacion"
-          ]
-        },
-        {
-          "fecha": "16-17 Abril",
-          "titulo": "Base de Datos de Precios",
-          "actividades": [
-            "Esquema de base de datos para precios Axion",
-            "Almacenamiento con fecha de actualizacion",
-            "Historico de precios por producto",
-            "API interna para consulta de precios"
-          ]
-        },
-        {
-          "fecha": "18 Abril",
-          "titulo": "Panel de Precios Axion",
-          "actividades": [
-            "Nueva seccion en sistema Berria para precios Axion",
-            "Vista por estacion con todos los valores",
-            "Indicador de ultima actualizacion",
-            "Diseño responsive"
-          ]
-        },
-        {
-          "fecha": "20-22 Abril",
-          "titulo": "Automatizacion",
-          "actividades": [
-            "Tarea programada diaria a las 7:00 AM",
-            "Manejo de errores y reintentos",
-            "Alertas si falla la extraccion",
-            "Logs de ejecucion"
-          ]
-        },
-        {
-          "fecha": "23-24 Abril",
-          "titulo": "Testing Integral Axion",
-          "actividades": [
-            "Testing con todas las estaciones",
-            "Verificacion de datos vs plataforma real",
-            "Optimizacion de rendimiento",
-            "Ajustes finales"
-          ]
-        },
-        {
-          "fecha": "25 Abril",
-          "titulo": "Entrega Energy Center",
-          "actividades": [
-            "Deploy a produccion del modulo Axion",
-            "Validacion final en entorno productivo",
-            "Documentacion del modulo"
-          ]
-        }
-      ]
-    },
-    {
-      "titulo": "Fase 3B: Precios de Combustibles - CSOnline / Shell (27 Abril - 27 Mayo 2026)",
-      "dias": [
-        {
-          "fecha": "27-29 Abril",
+          "fecha": "28-29 Marzo",
           "titulo": "Analisis de Plataforma CSOnline",
           "actividades": [
             "Analisis del flujo OAuth2 de CSOnline (Raizen)",
@@ -297,7 +174,7 @@
           ]
         },
         {
-          "fecha": "30 Abril",
+          "fecha": "30-31 Marzo",
           "titulo": "Autenticacion CSOnline",
           "actividades": [
             "Desarrollo de login automatico CSOnline",
@@ -306,7 +183,7 @@
           ]
         },
         {
-          "fecha": "2 Mayo",
+          "fecha": "1 Abril",
           "titulo": "Navegacion y Selectores",
           "actividades": [
             "Navegacion programatica en CSOnline",
@@ -315,7 +192,7 @@
           ]
         },
         {
-          "fecha": "4-6 Mayo",
+          "fecha": "4-6 Abril",
           "titulo": "Extraccion Estaciones de Servicio",
           "actividades": [
             "Extraccion de FOB y CIF por estacion",
@@ -325,7 +202,7 @@
           ]
         },
         {
-          "fecha": "7-9 Mayo",
+          "fecha": "7-9 Abril",
           "titulo": "Cuentas AGRO",
           "actividades": [
             "Extraccion de datos cuenta AGRO Gral Pico",
@@ -335,7 +212,7 @@
           ]
         },
         {
-          "fecha": "11-13 Mayo",
+          "fecha": "11-13 Abril",
           "titulo": "Multi-Cuenta y Consolidacion",
           "actividades": [
             "Iteracion automatica por todas las cuentas",
@@ -345,7 +222,7 @@
           ]
         },
         {
-          "fecha": "14-15 Mayo",
+          "fecha": "14-15 Abril",
           "titulo": "Base de Datos de Precios Shell",
           "actividades": [
             "Esquema de base de datos para precios Shell",
@@ -355,7 +232,7 @@
           ]
         },
         {
-          "fecha": "16 Mayo",
+          "fecha": "16 Abril",
           "titulo": "Panel de Precios Shell",
           "actividades": [
             "Seccion de precios Shell en sistema Berria",
@@ -364,7 +241,7 @@
           ]
         },
         {
-          "fecha": "18-20 Mayo",
+          "fecha": "18-20 Abril",
           "titulo": "Comparativas entre Petroleras",
           "actividades": [
             "Tabla comparativa Axion vs Shell",
@@ -374,7 +251,7 @@
           ]
         },
         {
-          "fecha": "21-23 Mayo",
+          "fecha": "21-23 Abril",
           "titulo": "Automatizacion y Testing",
           "actividades": [
             "Tarea programada diaria 7:00 AM (Shell + Axion)",
@@ -384,13 +261,136 @@
           ]
         },
         {
-          "fecha": "26-27 Mayo",
-          "titulo": "Entrega CSOnline y Cierre Fase 3",
+          "fecha": "24-25 Abril",
+          "titulo": "Entrega CSOnline y Cierre",
           "actividades": [
             "Deploy a produccion del modulo Shell",
             "Testing final del sistema completo de precios",
             "Documentacion tecnica completa",
             "Entrega del modulo de precios"
+          ]
+        }
+      ]
+    },
+    {
+      "titulo": "Fase 3A: Precios de Combustibles - Energy Center / Axion (27 Abril - 27 Mayo 2026)",
+      "dias": [
+        {
+          "fecha": "27 Abril",
+          "titulo": "Analisis de Plataforma",
+          "actividades": [
+            "Analisis del flujo OAuth2 de Energy Center",
+            "Estudio de la estructura de la plataforma",
+            "Identificacion de endpoints de precios",
+            "Mapeo de datos por estacion"
+          ]
+        },
+        {
+          "fecha": "29-30 Abril",
+          "titulo": "Prototipo de Autenticacion",
+          "actividades": [
+            "Pruebas de autenticacion con Azure B2C",
+            "Desarrollo del modulo de login automatico",
+            "Manejo de tokens y sesiones",
+            "Testing de estabilidad del login"
+          ]
+        },
+        {
+          "fecha": "1 Mayo",
+          "titulo": "Navegacion Automatizada",
+          "actividades": [
+            "Navegacion programatica dentro de la plataforma",
+            "Identificacion de selectores de datos",
+            "Manejo de carga dinamica de contenido"
+          ]
+        },
+        {
+          "fecha": "4 Mayo",
+          "titulo": "Extraccion de Precios Basicos",
+          "actividades": [
+            "Extraccion de Costo Basico (CB)",
+            "Extraccion de ITC (impuesto interno)",
+            "Extraccion de CO2 (impuesto interno)",
+            "Extraccion de Precio Surtidor"
+          ]
+        },
+        {
+          "fecha": "6-8 Mayo",
+          "titulo": "Extraccion FOB",
+          "actividades": [
+            "Extraccion de precio FOB por estacion",
+            "Navegacion entre diferentes estaciones",
+            "Validacion de datos extraidos",
+            "Manejo de estaciones sin FOB"
+          ]
+        },
+        {
+          "fecha": "9-11 Mayo",
+          "titulo": "Simulacion CIF",
+          "actividades": [
+            "Simulacion automatica de pedido para obtener CIF",
+            "Configuracion de fecha (hoy o proxima habilitada)",
+            "Sin contrato, comparacion ITC/CO2 con FOB",
+            "Manejo de estaciones sin CIF"
+          ]
+        },
+        {
+          "fecha": "13-15 Mayo",
+          "titulo": "Soporte Multi-Estacion",
+          "actividades": [
+            "Iteracion automatica por todas las estaciones",
+            "Datos independientes por cada cuenta",
+            "Consolidacion de resultados",
+            "Manejo de errores por estacion"
+          ]
+        },
+        {
+          "fecha": "16-17 Mayo",
+          "titulo": "Base de Datos de Precios",
+          "actividades": [
+            "Esquema de base de datos para precios Axion",
+            "Almacenamiento con fecha de actualizacion",
+            "Historico de precios por producto",
+            "API interna para consulta de precios"
+          ]
+        },
+        {
+          "fecha": "18 Mayo",
+          "titulo": "Panel de Precios Axion",
+          "actividades": [
+            "Nueva seccion en sistema Berria para precios Axion",
+            "Vista por estacion con todos los valores",
+            "Indicador de ultima actualizacion",
+            "Diseño responsive"
+          ]
+        },
+        {
+          "fecha": "20-22 Mayo",
+          "titulo": "Automatizacion",
+          "actividades": [
+            "Tarea programada diaria a las 7:00 AM",
+            "Manejo de errores y reintentos",
+            "Alertas si falla la extraccion",
+            "Logs de ejecucion"
+          ]
+        },
+        {
+          "fecha": "23-24 Mayo",
+          "titulo": "Testing Integral Axion",
+          "actividades": [
+            "Testing con todas las estaciones",
+            "Verificacion de datos vs plataforma real",
+            "Optimizacion de rendimiento",
+            "Ajustes finales"
+          ]
+        },
+        {
+          "fecha": "27 Mayo",
+          "titulo": "Entrega Energy Center",
+          "actividades": [
+            "Deploy a produccion del modulo Axion",
+            "Validacion final en entorno productivo",
+            "Documentacion del modulo"
           ]
         }
       ]
